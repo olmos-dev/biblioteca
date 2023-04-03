@@ -45,6 +45,6 @@ class User extends Authenticatable
     //Relacion uno a uno - un Usuario tiene un Encargado
     public function encargado()
     {
-        return $this->hasOne(Encargado::class);
+        return $this->hasOne(Encargado::class,'user_id');
     }
 }

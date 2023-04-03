@@ -16,3 +16,5 @@ use Illuminate\Support\Facades\Route;
 Route::get('/biblioteca', function () {
     return view('index');
 })->middleware('auth');
+
+

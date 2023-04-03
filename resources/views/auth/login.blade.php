@@ -28,7 +28,7 @@
                             </div>
                         @endif
                         {{-- Formulario --}}
-                        <form action="{{ url('/login') }}" method="post">
+                        <form action="{{ url('/login') }}" method="post" novalidate>
                         @csrf
                             <div class="input-group mb-3">
                                 <input type="email" name="email" id="email" class="form-control" placeholder="usuario o correo electrónico">
