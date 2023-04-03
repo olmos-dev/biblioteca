@@ -2,6 +2,7 @@
 
 namespace App\Actions\Fortify;
 
+use App\Models\Encargado;
 use App\Models\User;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
@@ -29,12 +30,26 @@ class CreateNewUser implements CreatesNewUsers
                 Rule::unique(User::class),
             ],
             'password' => $this->passwordRules(),
+            //validacion para los datos de encargado
+            'nombre' => ['required', 'string', 'max:30'],
+            'materno' => ['required', 'string', 'max:30'],
+            'paterno' => ['required', 'string', 'max:30'],
         ])->validate();
 
-        return User::create([
+        $usuario = User::create([
             'name' => $input['name'],
             'email' => $input['email'],
             'password' => Hash::make($input['password']),
         ]);
+
+        //se agregan a la BD los datos del encargado
+        Encargado::create([
+            'user_id' => $usuario->id,
+            'nombre' => $input['nombre'],
+            'apellido_materno' => $input['materno'],
+            'apellido_paterno' => $input['paterno'],
+        ]);
+
+        return $usuario;
     }
 }

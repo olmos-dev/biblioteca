@@ -41,4 +41,10 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    //Relacion uno a uno - un Usuario tiene un Encargado
+    public function encargado()
+    {
+        return $this->hasOne(Encargado::class);
+    }
 }

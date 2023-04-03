@@ -4,17 +4,16 @@
 <div class="container">
     <div class="row justify-content-center">
         <div class="col-12 col-md-4 mt-5">
-            <form action="{{ url('/login') }}" method="post">
                 @csrf
                 <div class="login-box shadow">
                     <div class="login-logo mt-5">
-                    <a href="../../index2.html"><b>Biblioteca</b></a>
+                    <a href="{{ url('/biblioteca')}}"><b>Biblioteca</b></a>
                     </div>
                     <!-- /.login-logo -->
                     <div class="card">
                     <div class="card-body login-card-body">
                         <p class="login-box-msg">Accede para comenzar</p>
-
+                        {{-- Validación --}}
                         @if ($errors->all())
                             <div class="alert alert-danger alert-dismissible fade show" role="alert">
                                 <strong>Autenticación</strong>
@@ -28,39 +27,40 @@
                                 </button>
                             </div>
                         @endif
-                
-                        <form action="../../index3.html" method="post">
-                        <div class="input-group mb-3">
-                            <input type="email" class="form-control" placeholder="usuario o correo electrónico">
-                            <div class="input-group-append">
-                            <div class="input-group-text">
-                                <span class="fas fa-envelope"></span>
+                        {{-- Formulario --}}
+                        <form action="{{ url('/login') }}" method="post">
+                        @csrf
+                            <div class="input-group mb-3">
+                                <input type="email" name="email" id="email" class="form-control" placeholder="usuario o correo electrónico">
+                                <div class="input-group-append">
+                                <div class="input-group-text">
+                                    <span class="fas fa-envelope"></span>
+                                </div>
+                                </div>
                             </div>
+                            <div class="input-group mb-3">
+                                <input type="password" name="password" id="email" class="form-control" placeholder="contraseña">
+                                <div class="input-group-append">
+                                <div class="input-group-text">
+                                    <span class="fas fa-lock"></span>
+                                </div>
+                                </div>
                             </div>
-                        </div>
-                        <div class="input-group mb-3">
-                            <input type="password" class="form-control" placeholder="contraseña">
-                            <div class="input-group-append">
-                            <div class="input-group-text">
-                                <span class="fas fa-lock"></span>
+                            <div class="row">
+                                <div class="col-8">
+                                <div class="icheck-primary">
+                                    <input type="checkbox" id="remember">
+                                    <label for="remember">
+                                    Recordarme
+                                    </label>
+                                </div>
+                                </div>
+                                <!-- /.col -->
+                                <div class="col-4">
+                                <button type="submit" class="btn btn-primary btn-block">Acceder</button>
+                                </div>
+                                <!-- /.col -->
                             </div>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-8">
-                            <div class="icheck-primary">
-                                <input type="checkbox" id="remember">
-                                <label for="remember">
-                                Recordarme
-                                </label>
-                            </div>
-                            </div>
-                            <!-- /.col -->
-                            <div class="col-4">
-                            <button type="submit" class="btn btn-primary btn-block">Acceder</button>
-                            </div>
-                            <!-- /.col -->
-                        </div>
                     </form>
                     <p class="mb-1">
                       <a href="{{ url('/forgot-password') }}">Olvide mi contraseña</a>
@@ -72,7 +72,6 @@
                   <!-- /.login-card-body -->
                 </div>
             </div>
-            </form>
         </div>
     </div>
 </div>
