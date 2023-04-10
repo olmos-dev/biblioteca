@@ -20,4 +20,10 @@ class Libro extends Model
     {
         return $this->morphOne(Image::class, 'imageable');
     }
+
+    /**Se usara una ruta amigable en vez del id */
+    public function getRouteKeyName()
+    {
+        return 'isbn';
+    }
 }

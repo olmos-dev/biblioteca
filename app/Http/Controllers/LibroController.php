@@ -43,7 +43,7 @@ class LibroController extends Controller
         /**Se almacena la imagen en la ruta*/
         $portada->move(public_path('storage/images/portadas'),$nombre);
 
-        //insertar el libro en la BD
+        //inserta los datos del libro en la BD
         $libro = Libro::create([
             'isbn' => $validado['isbn'],
             'titulo' => $validado['titulo'],
