@@ -53,7 +53,7 @@ class LibroController extends Controller
 
         //inserta los datos de la imagen del libro
         $libro->image()->create([
-            'url' => $nombre,
+            'path' => $nombre,
             'imageable_id' => $libro->id,
             'imageable_type' => get_class($libro)
         ]);
