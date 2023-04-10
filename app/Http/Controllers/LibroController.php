@@ -51,7 +51,7 @@ class LibroController extends Controller
             'editorial' => $validado['editorial']
         ]);
 
-        //insertar imagen del libro
+        //inserta los datos de la imagen del libro
         $libro->image()->create([
             'url' => $nombre,
             'imageable_id' => $libro->id,
