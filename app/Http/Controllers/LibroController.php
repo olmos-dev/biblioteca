@@ -2,11 +2,13 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Image;
 use App\Models\Libro;
 use Illuminate\Http\Request;
 use App\Http\Requests\LibroRequest;
-use App\Models\Image;
 use Illuminate\Support\Facades\Storage;
+use App\Http\Requests\LibroUpdateRequest;
+use Illuminate\Support\Facades\File;
 
 class LibroController extends Controller
 {
@@ -81,10 +83,31 @@ class LibroController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(LibroRequest $request, Libro $libro)
+    public function update(LibroUpdateRequest $request, Libro $libro)
     {
         //validación
         $validado = $request->validated();
+
+        if($request->hasFile('portada')){
+            //return 'se ha subido una nueva portada';
+
+            //La imagen se obtiene del request
+            $portada = $request->file('portada');
+            //Se renombre la imagen
+            $renombrar = time().'.'.$validado['portada']->extension();
+            //Se almacena la imagen en el storage
+            $portada->move(public_path('storage/images/portadas'),$renombrar);
+            
+            //se busca la portada actual del libro
+            $portada = $libro->image;
+            //se elimina la portada actual del libro
+            File::delete('storage/images/portadas/'.$portada->path);
+            //se actualiza el path de la portada del libro
+            $portada->update([
+                'path' => $renombrar
+            ]);
+        }
+
         //actualizar el libro en la BD
         $libro->update([
             'isbn' => $validado['isbn'],
@@ -92,6 +115,7 @@ class LibroController extends Controller
             'autor' => $validado['autor'],
             'editorial' => $validado['editorial']
         ]);
+
         //redireccionar
         return redirect()->route('libro.index')->with('mensaje','el libro se ha actualizado');
 

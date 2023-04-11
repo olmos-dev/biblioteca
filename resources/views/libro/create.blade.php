@@ -1,5 +1,9 @@
 @extends('layouts.app')
 
+@section('estilos')
+    <link rel="stylesheet" href="{{ asset('css/toastr.min.css') }}">
+@endsection
+
 @section('content')
 <div class="wrapper">
     {{-- menu de navegación --}}
@@ -37,7 +41,7 @@
                         </div>
                       <div class="form-group col-md-6">
                         <label for="titulo">Titulo</label>
-                        <input type="text" name="titulo" id="titulo" class="form-control @error('isbn') is-invalid @enderror" value="{{ old('titulo') }}" placeholder="Escribe el titulo de libro">
+                        <input type="text" name="titulo" id="titulo" class="form-control @error('titulo') is-invalid @enderror" value="{{ old('titulo') }}" placeholder="Escribe el titulo de libro">
                         @error('titulo')
                         <div class="invalid-feedback">
                           {{ $message }}
@@ -46,7 +50,7 @@
                       </div>
                       <div class="form-group col-md-6">
                         <label for="autor">Autor</label>
-                        <input type="text" name="autor" id="autor" class="form-control @error('isbn') is-invalid @enderror" value="{{ old('autor') }}" placeholder="Escribe el autor del libro">
+                        <input type="text" name="autor" id="autor" class="form-control @error('autor') is-invalid @enderror" value="{{ old('autor') }}" placeholder="Escribe el autor del libro">
                         @error('autor')
                         <div class="invalid-feedback">
                           {{ $message }}
@@ -55,7 +59,7 @@
                         </div>
                       <div class="form-group col-md-6">
                         <label for="editorial">Editorial</label>
-                        <input type="text" name="editorial" id="editorial" class="form-control @error('isbn') is-invalid @enderror" value="{{ old('editorial') }}" placeholder="Escribe el autor del libro">
+                        <input type="text" name="editorial" id="editorial" class="form-control @error('editorial') is-invalid @enderror" value="{{ old('editorial') }}" placeholder="Escribe el autor del libro">
                         @error('editorial')
                         <div class="invalid-feedback">
                           {{ $message }}
@@ -72,10 +76,9 @@
                         </div>
                         @enderror
                       </div>
-                     
                   </div>
                   <div class="card-footer d-flex justify-content-center justify-content-md-end">
-                    <button type="submit" class="btn btn-primary">Agregar</button>
+                    <button type="submit" class="btn btn-primary"><i class="fas fa-save"></i> Agregar</button>
                   </div>
                 </form>
               </div>
@@ -87,4 +90,17 @@
     <!-- /.content-wrapper -->
   </div>
   <!-- ./wrapper -->
+@endsection
+
+@section('scripts')
+<script src="{{ asset('js/toastr.min.js') }}"></script>
+<script>
+  //es para enviar una alerta cuando se ha subido la portada del libro
+  document.addEventListener("DOMContentLoaded", (event) => {
+    const portada = document.getElementById('portada'); 
+    portada.addEventListener("change", (event) => {
+      toastr.info('la portada del libro se ha subido','Carga');
+    });
+  });
+</script>
 @endsection

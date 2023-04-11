@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('estilos')
-    <link rel="stylesheet" href="">
+    <link rel="stylesheet" href="{{ asset('css/lightbox.min.css') }}">
 @endsection
 
 @section('content')
@@ -45,6 +45,7 @@
                         <thead class="">
                             <tr>
                                 <th>ISBN</th>
+                                <th>Portada</th>
                                 <th>Titulo</th>
                                 <th>Autor</th>
                                 <th>Editorial</th>
@@ -55,6 +56,11 @@
                                 @foreach ($libros as $libro)
                                 <tr>
                                     <td>{{ $libro->isbn }}</td>
+                                    <td>
+                                      <a href="{{ asset('/storage/images/portadas/'.$libro->image->path) }}" data-lightbox="image-1" data-title="Portada del libro">
+                                        <img src="{{ asset('/storage/images/portadas/'.$libro->image->path) }}" alt="Portada del libro" class="img-thumbnail" width="50" height="75">
+                                      </a>
+                                    </td>
                                     <td>{{ $libro->titulo }}</td>
                                     <td>{{ $libro->autor }}</td>
                                     <td>{{ $libro->editorial }}</td>
@@ -85,4 +91,5 @@
 
 @section('scripts')
   <script src="{{ asset('js/sweetalert.js') }}"></script>
+  <script src="{{ asset('js/lightbox.min.js') }}"></script>
 @endsection
