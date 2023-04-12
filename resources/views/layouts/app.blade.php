@@ -8,6 +8,7 @@
         <link rel="stylesheet" href="{{ asset('css/all.min.css') }}">
         <link rel="stylesheet" href="{{ asset('css/adminlte.min.css') }}">
         @yield('estilos')
+        @vite(['resources/css/app.css'])
     </head>
     <body class="bg-light">
         <div id="app">
@@ -20,5 +21,6 @@
         <script src="{{ asset('js/bootstrap.bundle.min.js') }}"></script>
         <script src="{{ asset('js/adminlte.min.js') }}"></script>
         @yield('scripts')
+        @vite(['resources/js/app.js'])
     </body>
 </html>

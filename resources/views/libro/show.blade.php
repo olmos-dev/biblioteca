@@ -38,9 +38,7 @@
                             <p class="text-right font-weight-bold">ISBN - {{ $libro->isbn }}</p>
                             <h3 class="text-left">{{ $libro->titulo }}</h3>
                             <p class="text-left font-weight-bold">{{ $libro->autor }}</p>
-                            <p class="text-left font-weight-bold">{{ $libro->editorial }}</p>
-                            <p class="text-left"> <span class="badge badge-secondary">Cantidad 5</span></p>
-                           
+                            <p class="text-left font-weight-bold">{{ $libro->editorial }}</p>   
                         </div>
                     </div>
                   
