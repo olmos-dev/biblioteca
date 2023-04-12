@@ -49,7 +49,7 @@
                                 <th>Titulo</th>
                                 <th>Autor</th>
                                 <th>Editorial</th>
-                                <th colspan="2" style="width:10%;"></th>
+                                <th colspan="3" style="width:10%;"></th>
                             </tr>
                             </thead>
                             <tbody>
@@ -64,6 +64,9 @@
                                     <td>{{ $libro->titulo }}</td>
                                     <td>{{ $libro->autor }}</td>
                                     <td>{{ $libro->editorial }}</td>
+                                    <th>
+                                        <a href="{{ route('libro.show',['libro' => $libro]) }}" class="btn btn-sm btn-primary"><i class="fas fa-eye"></i></a>
+                                    </td>
                                     <td>
                                         <a href="{{ route('libro.edit',['libro' => $libro]) }}" class="btn btn-sm btn-primary"><i class="fas fa-edit"></i></a>
                                     </td>

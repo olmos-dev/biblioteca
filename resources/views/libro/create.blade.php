@@ -94,13 +94,6 @@
 
 @section('scripts')
 <script src="{{ asset('js/toastr.min.js') }}"></script>
-<script>
-  //es para enviar una alerta cuando se ha subido la portada del libro
-  document.addEventListener("DOMContentLoaded", (event) => {
-    const portada = document.getElementById('portada'); 
-    portada.addEventListener("change", (event) => {
-      toastr.info('la portada del libro se ha subido','Carga');
-    });
-  });
-</script>
+{{-- alerta al subit una imagen --}}
+<script src="{{ asset('js/main/alertupload.js') }}"></script>
 @endsection

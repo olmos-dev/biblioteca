@@ -69,7 +69,7 @@ class LibroController extends Controller
      */
     public function show(Libro $libro)
     {
-        
+        return view('libro.show',compact('libro'));
     }
 
     /**
@@ -89,8 +89,8 @@ class LibroController extends Controller
         $validado = $request->validated();
 
         if($request->hasFile('portada')){
-            //return 'se ha subido una nueva portada';
-
+            /** se ha subido una nueva portada*/
+            
             //La imagen se obtiene del request
             $portada = $request->file('portada');
             //Se renombre la imagen
