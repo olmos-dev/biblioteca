@@ -2,6 +2,8 @@
 
 @section('estilos')
     <link rel="stylesheet" href="{{ asset('css/lightbox.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/sweetalert2.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/toastr.min.css') }}">
 @endsection
 
 @section('content')
@@ -55,6 +57,7 @@
                             <tbody>
                                 @foreach ($libros as $libro)
                                 <tr>
+
                                     <td>{{ $libro->isbn }}</td>
                                     <td>
                                       <a href="{{ asset('/storage/images/portadas/'.$libro->image->path) }}" data-lightbox="image-1" data-title="Portada del libro">
@@ -71,7 +74,7 @@
                                         <a href="{{ route('libro.edit',['libro' => $libro]) }}" class="btn btn-sm btn-primary"><i class="fas fa-edit"></i></a>
                                     </td>
                                     <td>
-                                        <button class="btn btn-danger btn-sm" id="eliminar"><i class="fas fa-trash-alt"></i></button>
+                                        <libro-delete :libro="{{ $libro }}"></libro-delete>
                                     </td>
                                 </tr>
                                 @endforeach
@@ -93,6 +96,7 @@
 @endsection
 
 @section('scripts')
-  <script src="{{ asset('js/sweetalert.js') }}"></script>
   <script src="{{ asset('js/lightbox.min.js') }}"></script>
+  <script src="{{ asset('js/sweetalert2.min.js') }}"></script>
+  <script src="{{ asset('js/toastr.min.js') }}"></script>
 @endsection

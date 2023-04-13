@@ -24,4 +24,4 @@ Route::get('/biblioteca/libros/ver/{libro}',[LibroController::class,'show'])->na
 Route::post('/biblioteca/libros',[LibroController::class,'store'])->name('libro.store')->middleware('auth');
 Route::get('/biblioteca/libros/editar/{libro}',[LibroController::class,'edit'])->name('libro.edit')->middleware('auth');
 Route::put('/biblioteca/libros/{libro}',[LibroController::class,'update'])->name('libro.update')->middleware('auth');
-Route::delete('/biblioteca/libros/{libro}',[LibroController::class,'delete'])->name('libro.delete')->middleware('auth');
+Route::delete('/biblioteca/libros/{libro}',[LibroController::class,'destroy'])->name('libro.delete')->middleware('auth');

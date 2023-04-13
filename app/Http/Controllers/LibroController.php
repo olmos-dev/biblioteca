@@ -126,6 +126,8 @@ class LibroController extends Controller
      */
     public function destroy(Libro $libro)
     {
-        //
+        return response()->json([
+            'msg' => 'listo',
+        ],200);
     }
 }
