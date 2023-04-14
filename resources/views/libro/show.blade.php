@@ -59,5 +59,5 @@
 @endsection
 
 @section('scripts')
-  <script src="{{ asset('css/lightbox.min.css') }}"></script>
+  <script src="{{ asset('js/lightbox.min.js') }}"></script>
 @endsection

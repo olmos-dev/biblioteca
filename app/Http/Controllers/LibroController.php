@@ -17,7 +17,8 @@ class LibroController extends Controller
      */
     public function index()
     {
-        $libros = Libro::all();
+        $libros = Libro::with('image:id,path,imageable_type,imageable_id')
+                            ->get(['id','isbn','titulo','autor','editorial']);
         return view('libro.index',compact('libros'));
     }
 
