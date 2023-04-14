@@ -126,8 +126,15 @@ class LibroController extends Controller
      */
     public function destroy(Libro $libro)
     {
-        return response()->json([
-            'msg' => 'listo',
-        ],200);
+        //se busca la portada actual del libro
+        $portada = $libro->image;
+        //se elimina la portada actual del libro del storage
+        File::delete('storage/images/portadas/'.$portada->path);
+        //se elimina la portada del libro de la >BD
+        $portada->delete();
+        //se elimina el libro de la BD
+        $libro->delete();
+        //se retorna la respuesta en formato json
+        return response()->json($libro,200);
     }
 }

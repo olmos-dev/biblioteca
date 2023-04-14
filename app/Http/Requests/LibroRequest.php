@@ -23,7 +23,7 @@ class LibroRequest extends FormRequest
     {
         return [
             'isbn' => ['required','digits:10'],
-            'portada' => ['required','image','mimes:png,jpg'],
+            'portada' => ['required','image','mimes:png,jpg,jpeg'],
             'titulo' => ['required','string','max:60'],
             'autor' => ['required','string','max:60'],
             'editorial' => ['required','string','max:60'],

@@ -43,9 +43,9 @@
                   </div>
                   <div class="card-body table-responsive">
                     {{-- listado de libros --}}
-                    <table class="table table-striped">
+                    <table class="table table-hover table-bordered">
                         <thead class="">
-                            <tr>
+                            <tr class="border">
                                 <th>ISBN</th>
                                 <th>Portada</th>
                                 <th>Titulo</th>
@@ -56,8 +56,7 @@
                             </thead>
                             <tbody>
                                 @foreach ($libros as $libro)
-                                <tr>
-
+                                <tr data-isbn="{{ $libro->isbn }}">
                                     <td>{{ $libro->isbn }}</td>
                                     <td>
                                       <a href="{{ asset('/storage/images/portadas/'.$libro->image->path) }}" data-lightbox="image-1" data-title="Portada del libro">
