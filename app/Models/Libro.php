@@ -26,4 +26,11 @@ class Libro extends Model
     {
         return 'isbn';
     }
+
+    public function scopeFiltrar($query,$buscar){
+        return $query->where('titulo','like',"%$buscar%")
+                        ->orWhere('autor','like',"%$buscar%")
+                        ->orWhere('editorial','like',"%$buscar%");
+    }
+    
 }

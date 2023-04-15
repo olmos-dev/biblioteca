@@ -6,19 +6,28 @@ use App\Models\Image;
 use App\Models\Libro;
 use Illuminate\Http\Request;
 use App\Http\Requests\LibroRequest;
-use Illuminate\Support\Facades\Storage;
-use App\Http\Requests\LibroUpdateRequest;
 use Illuminate\Support\Facades\File;
+use Illuminate\Support\Facades\Storage;
+use App\Http\Requests\BuscarLibroRequest;
+use App\Http\Requests\LibroUpdateRequest;
 
 class LibroController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(BuscarLibroRequest $request)
     {
-        $libros = Libro::with('image:id,path,imageable_type,imageable_id')
-                            ->get(['id','isbn','titulo','autor','editorial']);
+        //se valida el parametro de busqueda
+        $validado = $request->validated();
+        //si el usuario realiza una busqueda o no
+        $buscar = $validado['buscar'] ?? null;
+        //se utiliza Eager Loading, query scope y se enlistan los libros agregados ultimamente y se paginan
+        $libros = Libro::select('id','isbn','titulo','autor','editorial')
+                            ->with('image:id,path,imageable_type,imageable_id')
+                            ->filtrar($buscar)
+                            ->latest()
+                            ->paginate(10);
         return view('libro.index',compact('libros'));
     }
 

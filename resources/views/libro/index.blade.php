@@ -42,7 +42,23 @@
                     </div>
                   </div>
                   <div class="card-body table-responsive">
-                    {{-- listado de libros --}}
+                    <div class="row">
+                      <div class="col-12 mb-2">
+                        <form action="{{ route('libro.index') }}" method="get" class="form-inline d-flex justify-content-start justify-content-md-end">
+                          <div class="input-group mb-3">
+                            <input type="search" name="buscar" id="buscar" class="form-control @error('buscar') is-invalid @enderror" placeholder="buscar">
+                            <div class="input-group-append">
+                              <button type="submit" class="btn btn-outline-primary" type="button"><i class="fas fa-search"></i></button>
+                            </div>
+                            @error('buscar')
+                            <div class="invalid-feedback">
+                              {{ $message }}
+                            </div>
+                            @enderror
+                          </div>
+                        </form>
+                      </div>
+                    </div>
                     <table class="table table-hover table-bordered">
                         <thead class="">
                             <tr class="border">
@@ -81,7 +97,11 @@
                     </table>
                   </div>
                   <div class="card-foter">
-
+                    <div class="row table-responsive">
+                      <div class="col-12 d-flex ml-3 ml-md-0 justify-content-start justify-content-md-center ">
+                        {{ $libros->withQueryString()->links() }}
+                      </div>
+                    </div>
                   </div>
               </div>
             </div>
