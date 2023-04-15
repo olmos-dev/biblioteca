@@ -21,6 +21,15 @@ class Libro extends Model
         return $this->morphOne(Image::class, 'imageable');
     }
 
+    /**
+     * Get the user associated with the Libro
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\HasOne
+     */
+    public function stock(){
+        return $this->hasOne(Stock::class);
+    }
+
     /**Se usara una ruta amigable en vez del id */
     public function getRouteKeyName()
     {

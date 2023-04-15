@@ -44,6 +44,12 @@
                   <p>agregar un nuevo libro</p>
                 </a>
               </li>
+              <li class="nav-item">
+                <a href="{{ route('stock.index') }}" class="nav-link">
+                  <i class="fas fa-archive nav-icon"></i>
+                  <p>stock</p>
+                </a>
+              </li>
             </ul>
           </li>
           <li class="nav-item has-treeview">
@@ -70,6 +76,9 @@
               </li>
             </ul>
           </li>
+          {{-- stock --}}
+          
+
           
         </ul>
       </nav>
