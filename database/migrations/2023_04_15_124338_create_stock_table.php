@@ -17,6 +17,7 @@ return new class extends Migration
             $table->foreign('libro_id')->references('id')->on('libro')->onUpdate('cascade')->ondUpdate('cascade');
             $table->tinyInteger('cantidad');
             $table->tinyInteger('disponible');
+            $table->tinyInteger('prestado')->default(0);
             $table->timestamps();
         });
     }

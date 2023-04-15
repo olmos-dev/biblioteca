@@ -33,13 +33,13 @@
                     <div class="form-row">
                       <div class="form-group col-md-6">
                         <label for="libro">Asignar libro</label>
-                        <select name="libro" id="libro" class="form-control select2bs4 @error('isbn') is-invalid @enderror" style="width: 100%;">
+                        <select name="libro" id="libro" class="form-control select2bs4 @error('libro') is-invalid @enderror" style="width: 100%;">
                             <option value="" disabled selected>-seleccionar-</option>
                             @foreach ($libros as $libro)
                                 <option value="{{ $libro->isbn }}">{{ $libro->isbn }} - {{ $libro->titulo }}</option>
                             @endforeach
                         </select>
-                        @error('isbn')
+                        @error('libro')
                         <div class="invalid-feedback">
                           {{ $message }}
                         </div>
@@ -55,7 +55,7 @@
                         @enderror
                       </div>
                   </div>
-                  <div class="card-footer d-flex justify-content-center justify-content-md-end">
+                  <div class="card-footer d-flex justify-content-center justify-content-md-end bg-white">
                     <button type="submit" class="btn btn-primary"><i class="fas fa-save"></i> Asignar</button>
                   </div>
                 </form>
@@ -72,6 +72,8 @@
 
 @section('scripts')
 <script src="{{ asset('js/select2.full.min.js') }}"></script>
+<script src="{{ asset('js/sweetalert2.min.js') }}"></script>
+<script src="{{ asset('js/toastr.min.js') }}"></script>
 <script>
     $(document).ready(function () {
         //Initialize Select2 Elements

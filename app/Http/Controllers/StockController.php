@@ -15,7 +15,7 @@ class StockController extends Controller
      */
     public function index()
     {
-        $asignados = Stock::with('libro')->get();
+        $asignados = Stock::with('libro')->paginate(1);
         //$asignados = Libro::with('stock')->get();
         //return $asignados;
         return view('stock.index',compact('asignados'));
@@ -51,7 +51,8 @@ class StockController extends Controller
         Stock::create([
             'libro_id' => $libro->id,
             'cantidad' => $validacion['cantidad'],
-            'disponible' => $validacion['cantidad']
+            'disponible' => $validacion['cantidad'],
+            'prestado' => 0
         ]);
 
         //redireccionar
@@ -87,8 +88,11 @@ class StockController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
+    public function destroy(Stock $stock)
     {
-        //
+        //se elimina el libro del stock
+        $stock->delete();
+        //se retorna la respuesta en json para saber que libro del stock se ha eliminado
+        return response()->json($stock,200);
     }
 }

@@ -10,7 +10,7 @@ class Stock extends Model
     use HasFactory;
 
     protected $table = 'stock';
-    protected $fillable = ['libro_id','cantidad','disponible'];
+    protected $fillable = ['libro_id','cantidad','disponible','prestado'];
 
     /**
      * Get the user that owns the Stock

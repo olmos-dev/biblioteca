@@ -1,7 +1,9 @@
 @extends('layouts.app')
 
 @section('estilos')
-
+  <link rel="stylesheet" href="{{ asset('css/sweetalert2.min.css') }}">
+  <link rel="stylesheet" href="{{ asset('css/toastr.min.css') }}">
+  <link rel="stylesheet" href="{{ asset('css/lightbox.min.css') }}">
 @endsection
 
 @section('content')
@@ -29,7 +31,7 @@
                 </div>
                 @endif
               <div class="card">
-                 <div class="card-header bg-primary text-white">
+                  <div class="card-header bg-primary text-white">
                     <div class="row">
                       <div class="col-12 col-md-6 d-flex justify-content-center justify-content-md-start">
                         <h5><i class="fas fa-archive"></i> Stock</h5>
@@ -63,19 +65,33 @@
                                 <th>ISBN</th>
                                 <th>Portada</th>
                                 <th>Titulo</th>
+                                <th></th>
                                 <th>Cantidad</th>
                                 <th>Disponible</th>
-                                <th colspan="3" style="width:10%;"></th>
+                                <th>Prestado</th>
+                                <th style="width:10%;"></th>
                             </tr>
                             </thead>
                             <tbody>
                                 @foreach ($asignados as $asignado)
-                                    <tr>
+                                    <tr data-id="{{ $asignado->id }}">
                                         <td>{{ $asignado->libro->isbn}}</td>
-                                        <td><img src="{{ asset('/storage/images/portadas/'.$asignado->libro->image->path) }}" alt="portada del libro" class="img-thumbnail" width="50" height="75"></td>
-                                        <td>{{ $asignado->libro->titulo }}</td>
+                                        <td>
+                                          <a href="{{ asset('/storage/images/portadas/'.$asignado->libro->image->path) }}" data-lightbox="image-1" data-title="Portada del libro">
+                                            <img src="{{ asset('/storage/images/portadas/'.$asignado->libro->image->path) }}" alt="Portada del libro" width="50" height="75">
+                                          </a>
+                                        </td>
+                                        <td>
+                                          <a style="color:black;" href="{{ asset(route('libro.show',['libro' => $asignado->libro])) }}"> {{ $asignado->libro->titulo }}</a>
+                                        </td>
+                                        <td>
+                                          <button class="btn btn-primary btn-sm mr-2 mb-1 mb-md-0"><i class="fas fa-angle-up"></i></button>
+                                          <button class="btn btn-primary btn-sm"><i class="fas fa-angle-down"></i></button>
+                                        </td>
                                         <td>{{ $asignado->cantidad }}</td>
                                         <td>{{ $asignado->disponible }}</td>
+                                        <td>{{ $asignado->prestado }}</td>
+                                        <td><stock-delete :stock="{{ $asignado }}"></stock-delete></td>
                                     </tr>
                                 @endforeach
                             </tbody>
@@ -84,7 +100,7 @@
                   <div class="card-foter">
                     <div class="row table-responsive">
                       <div class="col-12 d-flex ml-3 ml-md-0 justify-content-start justify-content-md-center ">
-                        
+                        {{ $asignados->links() }}
                       </div>
                     </div>
                   </div>
@@ -100,5 +116,7 @@
 @endsection
 
 @section('scripts')
-
+  <script src="{{ asset('js/sweetalert2.min.js') }}"></script>
+  <script src="{{ asset('js/toastr.min.js') }}"></script>
+  <script src="{{ asset('js/lightbox.min.js') }}"></script>
 @endsection

@@ -32,4 +32,6 @@ Route::delete('/biblioteca/libros/{libro}',[LibroController::class,'destroy'])->
 Route::get('/biblioteca/stock',[StockController::class,'index'])->name('stock.index')->middleware('auth');
 Route::get('/biblioteca/stock/asignar',[StockController::class,'create'])->name('stock.create')->middleware('auth');
 Route::post('/biblioteca/stock',[StockController::class,'store'])->name('stock.store')->middleware('auth');
+Route::delete('/biblioteca/stock/{stock}',[StockController::class,'destroy'])->name('stock.destroy')->middleware('auth');
+
 
