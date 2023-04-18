@@ -20,4 +20,12 @@ class Stock extends Model
     public function libro(){
         return $this->belongsTo(Libro::class, 'libro_id');
     }
+
+    //se realiza una busqueda en el stock por el libro o el isbn
+    public function scopeFiltrarStock($query,$buscar){
+        return $query->whereHas('Libro',function($query) use($buscar){
+            $query->where('isbn','like',"%$buscar%")->orWhere('titulo','like',"%$buscar%");
+        });
+    }
+
 }

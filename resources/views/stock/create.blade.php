@@ -19,6 +19,7 @@
         <div class="container-fluid">
           <div class="row mb-2">
             <div class="col-sm-12">
+              @if($libros->count() > 0)
               <div class="card">
                 <form action="{{ route('stock.store') }}" method="post">
                     @csrf
@@ -60,6 +61,11 @@
                   </div>
                 </form>
               </div>
+              @else
+              <div class="alert alert-info" role="alert">
+                <strong>Todos los libros están asignados </strong>
+              </div>
+              @endif
             </div>
           </div>
         </div><!-- /.container-fluid -->

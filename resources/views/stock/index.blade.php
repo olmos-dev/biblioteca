@@ -44,7 +44,7 @@
                   <div class="card-body table-responsive">
                     <div class="row">
                       <div class="col-12 mb-2">
-                        <form action="{{ route('libro.index') }}" method="get" class="form-inline d-flex justify-content-start justify-content-md-end">
+                        <form action="{{ route('stock.index') }}" method="get" class="form-inline d-flex justify-content-start justify-content-md-end">
                           <div class="input-group mb-3">
                             <input type="search" name="buscar" id="buscar" class="form-control @error('buscar') is-invalid @enderror" placeholder="buscar">
                             <div class="input-group-append">
@@ -100,7 +100,7 @@
                   <div class="card-foter">
                     <div class="row table-responsive">
                       <div class="col-12 d-flex ml-3 ml-md-0 justify-content-start justify-content-md-center ">
-                        {{ $asignados->links() }}
+                        {{ $asignados->withQueryString()->links() }}
                       </div>
                     </div>
                   </div>

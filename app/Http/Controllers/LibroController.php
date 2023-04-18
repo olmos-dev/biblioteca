@@ -25,7 +25,7 @@ class LibroController extends Controller
         //se utiliza Eager Loading, query scope y se enlistan los libros agregados ultimamente y se paginan
         $libros = Libro::select('id','isbn','titulo','autor','editorial')
                             ->with('image:id,path,imageable_type,imageable_id')
-                            ->filtrar($buscar)
+                            ->filtrarLibro($buscar)
                             ->latest()
                             ->paginate(10);
         return view('libro.index',compact('libros'));

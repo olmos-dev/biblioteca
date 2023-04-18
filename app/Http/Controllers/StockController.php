@@ -8,16 +8,21 @@ use App\Http\Requests\StockRequest;
 use App\Models\Stock;
 use Illuminate\Database\Eloquent\Builder;
 
+use function PHPUnit\Framework\isEmpty;
+
 class StockController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(Request $request)
     {
-        $asignados = Stock::with('libro')->orderBy('created_at','desc')->paginate(1);
-        //$asignados = Libro::with('stock')->get();
-        //return $asignados;
+        $buscar = $request->buscar ?? null;
+        $asignados = Stock::with('libro')
+                            ->filtrarStock($buscar)
+                            ->orderBy('created_at','desc')
+                            ->paginate(10);
+
         return view('stock.index',compact('asignados'));
     }
 
@@ -32,7 +37,7 @@ class StockController extends Controller
                             ->whereDoesntHave('stock')
                             ->orderby('titulo','asc')
                             ->get();
-
+                            
         return view('stock.create',compact('libros'));
     }
 
@@ -113,7 +118,7 @@ class StockController extends Controller
                 'cantidad' => $stock->cantidad - 1,
                 'disponible' => $stock->disponible - 1
             ]);
-            
+
         return response()->json($stock,200);
     }
 }
