@@ -4,7 +4,7 @@
   <link rel="stylesheet" href="{{ asset('css/sweetalert2.min.css') }}">
   <link rel="stylesheet" href="{{ asset('css/toastr.min.css') }}">
   <link rel="stylesheet" href="{{ asset('css/lightbox.min.css') }}">
-@endsection
+  <link rel="stylesheet" href="{{ asset('css/toastr.min.css') }}">
 
 @section('content')
 <div class="wrapper">
@@ -85,12 +85,12 @@
                                           <a style="color:black;" href="{{ asset(route('libro.show',['libro' => $asignado->libro])) }}"> {{ $asignado->libro->titulo }}</a>
                                         </td>
                                         <td>
-                                          <button class="btn btn-primary btn-sm mr-2 mb-1 mb-md-0"><i class="fas fa-angle-up"></i></button>
-                                          <button class="btn btn-primary btn-sm"><i class="fas fa-angle-down"></i></button>
+                                          <stock-increase :stock="{{ $asignado }}"></stock-increase>
+                                          <stock-decrementar :stock="{{ $asignado }}"></stock-decrementar>
                                         </td>
-                                        <td>{{ $asignado->cantidad }}</td>
-                                        <td>{{ $asignado->disponible }}</td>
-                                        <td>{{ $asignado->prestado }}</td>
+                                        <td><span id="cantidad">{{ $asignado->cantidad }}</span></td>
+                                        <td id="disponible">{{ $asignado->disponible }}</td>
+                                        <td id="prestado">{{ $asignado->prestado }}</td>
                                         <td><stock-delete :stock="{{ $asignado }}"></stock-delete></td>
                                     </tr>
                                 @endforeach
@@ -119,4 +119,5 @@
   <script src="{{ asset('js/sweetalert2.min.js') }}"></script>
   <script src="{{ asset('js/toastr.min.js') }}"></script>
   <script src="{{ asset('js/lightbox.min.js') }}"></script>
+  <script src="{{ asset('js/toastr.min.js') }}"></script>
 @endsection

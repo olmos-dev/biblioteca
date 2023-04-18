@@ -15,7 +15,7 @@ class StockController extends Controller
      */
     public function index()
     {
-        $asignados = Stock::with('libro')->paginate(1);
+        $asignados = Stock::with('libro')->orderBy('created_at','desc')->paginate(1);
         //$asignados = Libro::with('stock')->get();
         //return $asignados;
         return view('stock.index',compact('asignados'));
@@ -93,6 +93,27 @@ class StockController extends Controller
         //se elimina el libro del stock
         $stock->delete();
         //se retorna la respuesta en json para saber que libro del stock se ha eliminado
+        return response()->json($stock,200);
+    }
+
+    //permite incrementar la cantidad de los libros en el stock
+    public function increase(Stock $stock){
+        $stock->update([
+            'cantidad' => $stock->cantidad + 1,
+            'disponible' => $stock->disponible + 1
+        ]);
+
+        return response()->json($stock,200);
+    }
+
+    //permite decrementar la cantidad de los libros en el stock
+    public function decrementar(Stock $stock){
+        if ($stock->cantidad != 1)
+            $stock->update([
+                'cantidad' => $stock->cantidad - 1,
+                'disponible' => $stock->disponible - 1
+            ]);
+            
         return response()->json($stock,200);
     }
 }
