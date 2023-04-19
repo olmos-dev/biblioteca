@@ -10,9 +10,16 @@ class EstudianteController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(Request $request)
     {
-        //
+        $buscar = $request->buscar ?? null;
+
+        $estudiantes = Estudiante::select('matricula','nombre','a_paterno','a_materno')
+                                    ->filtrar($buscar)
+                                    ->orderBy('nombre','asc')
+                                    ->paginate(10);
+
+        return view('estudiante.index',compact('estudiantes'));
     }
 
     /**

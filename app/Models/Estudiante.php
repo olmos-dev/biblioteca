@@ -17,5 +17,12 @@ class Estudiante extends Model
     {
         return 'matricula';
     }
+
+    //buscar estudiantes por matricula, nombre o apellido paterno
+    public function scopeFiltrar($query,$buscar){
+        return $query->where('nombre','like',"%$buscar%")
+                        ->orWhere('a_paterno','like',"%$buscar%")
+                        ->orWhere('matricula',$buscar);
+    }
     
 }

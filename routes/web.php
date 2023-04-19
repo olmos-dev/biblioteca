@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\LibroController;
 use App\Http\Controllers\StockController;
+use App\Http\Controllers\EstudianteController;
 
 /*
 |--------------------------------------------------------------------------
@@ -36,4 +37,7 @@ Route::delete('/biblioteca/stock/{stock}',[StockController::class,'destroy'])->n
 Route::get('/biblioteca/stock/incrementar/{stock}',[StockController::class,'increase'])->name('stock.increase')->middleware('auth');
 Route::get('/biblioteca/stock/decrementar/{stock}',[StockController::class,'decrementar'])->name('stock.decrementar')->middleware('auth');
 
+//estudiante
+Route::get('/biblioteca/estudiante',[EstudianteController::class,'index'])->name('estudiante.index')->middleware('auth');
+Route::get('/biblioteca/estudiante/crear',[EstudianteController::class,'create'])->name('estudiante.create')->middleware('auth');
 

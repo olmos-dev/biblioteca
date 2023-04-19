@@ -63,7 +63,7 @@
             {{-- estudiantes --}}
             <ul class="nav nav-treeview">
               <li class="nav-item">
-                <a href="../index.html" class="nav-link">
+                <a href="{{ route('estudiante.index') }}" class="nav-link">
                   <i class="fas fa-list-ul nav-icon"></i>
                   <p>ver todos los estudiantes</p>
                 </a>
