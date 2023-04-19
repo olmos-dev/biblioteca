@@ -88,9 +88,9 @@
                                           <stock-increase :stock="{{ $asignado }}"></stock-increase>
                                           <stock-decrementar :stock="{{ $asignado }}"></stock-decrementar>
                                         </td>
-                                        <td><span id="cantidad">{{ $asignado->cantidad }}</span></td>
-                                        <td id="disponible">{{ $asignado->disponible }}</td>
-                                        <td id="prestado">{{ $asignado->prestado }}</td>
+                                        <td>{{ $asignado->cantidad }}</td>
+                                        <td>{{ $asignado->disponible }}</td>
+                                        <td>{{ $asignado->prestado }}</td>
                                         <td><stock-delete :stock="{{ $asignado }}"></stock-delete></td>
                                     </tr>
                                 @endforeach
