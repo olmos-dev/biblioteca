@@ -20,7 +20,7 @@ class StockController extends Controller
         $buscar = $request->buscar ?? null;
         $asignados = Stock::with('libro')
                             ->filtrarStock($buscar)
-                            ->orderBy('created_at','desc')
+                            ->orderBy('created_at','asc')
                             ->paginate(10);
 
         return view('stock.index',compact('asignados'));

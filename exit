@@ -1,0 +1,131 @@
+[33mcommit bdd2cd7a6c878f19576f7c716380d2c2a6ff080d[m[33m ([m[1;36mHEAD -> [m[1;32mmaster[m[33m)[m
+Author: AlbertoOlmos <albrtho94@gmail.com>
+Date:   Tue Apr 18 20:20:35 2023 -0600
+
+    index, buscar, paginacion con parametros implementados en estudiantes
+
+[33mcommit 44c0e919b6cb2b3699603293bd20aca6de1741ed[m
+Author: AlbertoOlmos <albrtho94@gmail.com>
+Date:   Tue Apr 18 19:53:17 2023 -0600
+
+    seeder y factory para el modelo estudiante
+
+[33mcommit 3e4303f86e4e5748affe6e55b30729e3db5f8efe[m
+Author: AlbertoOlmos <albrtho94@gmail.com>
+Date:   Tue Apr 18 19:08:54 2023 -0600
+
+    correccion del dom de incrementar y decrementar stock
+
+[33mcommit cc485ebafa8790a524725fd289c3b6db5429d337[m
+Author: AlbertoOlmos <albrtho94@gmail.com>
+Date:   Mon Apr 17 20:23:12 2023 -0600
+
+    paginacion y busqueda como la vista de crear implementados
+
+[33mcommit 6390d7a9262d1b5554a87b9b52b7cd0954bbdfff[m
+Author: AlbertoOlmos <albrtho94@gmail.com>
+Date:   Mon Apr 17 19:27:57 2023 -0600
+
+    incrementar y decrementar componente vue axios
+
+[33mcommit a38db44d262fef96c2169ac63b9fe988f2bcaa5b[m
+Author: AlbertoOlmos <albrtho94@gmail.com>
+Date:   Sat Apr 15 12:25:25 2023 -0600
+
+    stock eliminar vue y paginacion implementados
+
+[33mcommit 9fefeb3495847eeb4ae7d34aa0744008def4cab6[m
+Author: AlbertoOlmos <albrtho94@gmail.com>
+Date:   Fri Apr 14 20:41:11 2023 -0600
+
+    modulo stock create y store implementados
+
+[33mcommit 809f7842a3f6facf4b15e29c25836fb1b52acb6f[m
+Author: AlbertoOlmos <albrtho94@gmail.com>
+Date:   Fri Apr 14 18:53:53 2023 -0600
+
+    paginacion y parametros de busqueda en modulo libros
+
+[33mcommit 67de7a7a145f179f4eb03dcd5594d7090b421f3a[m
+Author: AlbertoOlmos <albrtho94@gmail.com>
+Date:   Fri Apr 14 17:23:06 2023 -0600
+
+    optimizacion libro index eloquent
+
+[33mcommit 1d8778c401e40eec7af4b90202abf17d1436e86d[m
+Author: AlbertoOlmos <albrtho94@gmail.com>
+Date:   Thu Apr 13 20:26:38 2023 -0600
+
+    frontend y backend del modulo libro implementado
+
+[33mcommit 9373449667c6640c1c63f4a9ce6be3e8f29846bb[m
+Author: AlbertoOlmos <albrtho94@gmail.com>
+Date:   Wed Apr 12 20:44:22 2023 -0600
+
+    componente vue eliminar libro cliente
+
+[33mcommit 8e46b4d2d0eb9cd14734988b889c50e9ce6e6439[m
+Author: AlbertoOlmos <albrtho94@gmail.com>
+Date:   Tue Apr 11 20:18:14 2023 -0600
+
+    instalar vue y configuracion de los componentes
+
+[33mcommit 3338ae48983117284e40c71f038560a0c7d18720[m
+Author: AlbertoOlmos <albrtho94@gmail.com>
+Date:   Tue Apr 11 19:44:35 2023 -0600
+
+    modulo show del libro implementado
+
+[33mcommit f6d495d5261e244d082eadf11615e3aa8d4e9ccb[m
+Author: AlbertoOlmos <albrtho94@gmail.com>
+Date:   Mon Apr 10 19:04:38 2023 -0600
+
+    modulo actualizar libro y alerta al subir imagen
+
+[33mcommit bfdf56ea8b893f1f6ca530a7c971029c400b95ba[m
+Author: AlbertoOlmos <albrtho94@gmail.com>
+Date:   Mon Apr 10 17:05:58 2023 -0600
+
+    url amigable para el libro
+
+[33mcommit faee390348ca5842c5e33d4e72031df25abfc33f[m
+Author: AlbertoOlmos <albrtho94@gmail.com>
+Date:   Mon Apr 10 16:59:26 2023 -0600
+
+    remplazar url a path en el modelo images
+
+[33mcommit 8b3b139ff2d974ec7eb2ad4d3dbc3cbe2f783790[m
+Author: AlbertoOlmos <albrtho94@gmail.com>
+Date:   Mon Apr 10 16:55:27 2023 -0600
+
+    seeder usuario implementado
+
+[33mcommit 31fb3fcbca7642e4a3e80d029270edc4a0b99a3f[m
+Author: AlbertoOlmos <albrtho94@gmail.com>
+Date:   Mon Apr 10 16:45:17 2023 -0600
+
+    creacion de un usuario para iniciar sesion
+
+[33mcommit 3db4bddbe6a667d8355c7121808ed3c22c514462[m
+Author: AlbertoOlmos <albrtho94@gmail.com>
+Date:   Mon Apr 10 16:37:29 2023 -0600
+
+    modulo crear un libro implementado
+
+[33mcommit b37e104c74dde4abd10a181da152e676828bdf78[m
+Author: AlbertoOlmos <albrtho94@gmail.com>
+Date:   Mon Apr 3 16:37:56 2023 -0600
+
+    logout se ha implementado
+
+[33mcommit af5aad0188c9ffc02a4c5e46036ca32553beab9f[m
+Author: AlbertoOlmos <albrtho94@gmail.com>
+Date:   Mon Apr 3 16:16:31 2023 -0600
+
+    login y registro se ha implementado
+
+[33mcommit 9377b4fc8446bb346867e0048cc49ed928439462[m
+Author: AlbertoOlmos <albrtho94@gmail.com>
+Date:   Sat Apr 1 16:14:43 2023 -0600
+
+    instalando y configurando laravel y fortify

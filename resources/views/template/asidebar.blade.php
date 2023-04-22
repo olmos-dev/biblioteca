@@ -14,7 +14,7 @@
                with font-awesome or any other icon font library -->
           {{-- Prestamos --}}
           <li class="nav-item has-treeview">
-            <a href="{{ url('/biblioteca') }}" class="nav-link">
+            <a href="{{ route('prestamo.index') }}" class="nav-link">
               <i class="nav-icon far fa-list-alt"></i>
               <p>
                 Prestamos

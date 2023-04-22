@@ -9,6 +9,7 @@ import LibroDelete from '../js/components/LibroDelete.vue'
 import StockDelete from '../js/components/StockDelete.vue'
 import StockIncrease from '../js/components/StockIncrease.vue'
 import StockDecrementar from '../js/components/StockDecrementar.vue'
+import PrestamoEstado from '../js/components/PrestamoEstado.vue'
 
 const app = createApp({});
 
@@ -18,5 +19,6 @@ app.component('HolaMundo',HolaMundo)
     .component('StockDelete',StockDelete)
     .component('StockIncrease',StockIncrease)
     .component('StockDecrementar',StockDecrementar)
+    .component('PrestamoEstado',PrestamoEstado)
 
 app.mount('#app');

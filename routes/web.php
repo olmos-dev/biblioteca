@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\LibroController;
 use App\Http\Controllers\StockController;
+use App\Http\Controllers\PrestamoController;
 use App\Http\Controllers\EstudianteController;
 
 /*
@@ -40,4 +41,12 @@ Route::get('/biblioteca/stock/decrementar/{stock}',[StockController::class,'decr
 //estudiante
 Route::get('/biblioteca/estudiante',[EstudianteController::class,'index'])->name('estudiante.index')->middleware('auth');
 Route::get('/biblioteca/estudiante/crear',[EstudianteController::class,'create'])->name('estudiante.create')->middleware('auth');
+
+//prestamos
+Route::get('/biblioteca/prestamos',[PrestamoController::class,'index'])->name('prestamo.index')->middleware('auth');
+Route::get('/biblioteca/prestamos/crear',[PrestamoController::class,'create'])->name('prestamo.create')->middleware('auth');
+Route::post('/biblioteca/prestamos',[PrestamoController::class,'store'])->name('prestamo.store')->middleware('auth');
+Route::patch('/biblioteca/prestamos/estado/{prestamo}',[PrestamoController::class,'estado'])->name('prestamo.estado')->middleware('auth');
+
+
 

@@ -1,0 +1,22 @@
+[33mbdd2cd7[m[33m ([m[1;36mHEAD -> [m[1;32mmaster[m[33m)[m index, buscar, paginacion con parametros implementados en estudiantes
+[33m44c0e91[m seeder y factory para el modelo estudiante
+[33m3e4303f[m correccion del dom de incrementar y decrementar stock
+[33mcc485eb[m paginacion y busqueda como la vista de crear implementados
+[33m6390d7a[m incrementar y decrementar componente vue axios
+[33ma38db44[m stock eliminar vue y paginacion implementados
+[33m9fefeb3[m modulo stock create y store implementados
+[33m809f784[m paginacion y parametros de busqueda en modulo libros
+[33m67de7a7[m optimizacion libro index eloquent
+[33m1d8778c[m frontend y backend del modulo libro implementado
+[33m9373449[m componente vue eliminar libro cliente
+[33m8e46b4d[m instalar vue y configuracion de los componentes
+[33m3338ae4[m modulo show del libro implementado
+[33mf6d495d[m modulo actualizar libro y alerta al subir imagen
+[33mbfdf56e[m url amigable para el libro
+[33mfaee390[m remplazar url a path en el modelo images
+[33m8b3b139[m seeder usuario implementado
+[33m31fb3fc[m creacion de un usuario para iniciar sesion
+[33m3db4bdd[m modulo crear un libro implementado
+[33mb37e104[m logout se ha implementado
+[33maf5aad0[m login y registro se ha implementado
+[33m9377b4f[m instalando y configurando laravel y fortify

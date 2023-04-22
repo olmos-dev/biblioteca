@@ -22,7 +22,7 @@ class Estudiante extends Model
     public function scopeFiltrar($query,$buscar){
         return $query->where('nombre','like',"%$buscar%")
                         ->orWhere('a_paterno','like',"%$buscar%")
-                        ->orWhere('matricula',$buscar);
+                        ->orWhere('matricula','like',"%$buscar%");
     }
     
 }

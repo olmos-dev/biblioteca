@@ -28,4 +28,10 @@ class Stock extends Model
         });
     }
 
+    //me devuelve los detalles de un libro en especifico del stock
+    public static function stockLibro($libro){
+        return Stock::select('id','libro_id','cantidad','disponible','prestado')
+                        ->where('libro_id',$libro)->first();
+    }
+
 }
