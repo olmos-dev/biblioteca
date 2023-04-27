@@ -82,14 +82,20 @@
                                           </a>
                                         </td>
                                         <td>
-                                          <a style="color:black;" href="{{ asset(route('libro.show',['libro' => $asignado->libro])) }}"> {{ $asignado->libro->titulo }}</a>
+                                          <a style="color:black;" href="{{ route('stock.show',['stock' => $asignado->id])}}"> {{ $asignado->libro->titulo }}</a>
                                         </td>
                                         <td>
                                           <stock-increase :stock="{{ $asignado }}"></stock-increase>
                                           <stock-decrementar :stock="{{ $asignado }}"></stock-decrementar>
                                         </td>
                                         <td>{{ $asignado->cantidad }}</td>
-                                        <td>{{ $asignado->disponible }}</td>
+                                        <td>
+                                          @if ($asignado->disponible == 0)
+                                            <span class="badge badge-danger">Agotado</span>
+                                          @else
+                                            {{ $asignado->disponible }}
+                                          @endif
+                                        </td>
                                         <td>{{ $asignado->prestado }}</td>
                                         <td><stock-delete :stock="{{ $asignado }}"></stock-delete></td>
                                     </tr>

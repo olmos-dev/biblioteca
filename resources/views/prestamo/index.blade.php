@@ -69,22 +69,24 @@
                                 <th>Encargado</th>
                                 <th>Fecha</th>
                                 <th>Estado</th>
-                                <th colspan="3" style="width:10%;"></th>
+                                <th colspan="2" style="width:10%;"></th>
                             </tr>
                             </thead>
                             <tbody>
                               @foreach ($prestamos as $prestamo)
-                                  <tr>
+                                  <tr data-id="{{ $prestamo->id }}">
                                     <td>{{ $prestamo->libro->isbn }}</td>
                                     <td>
                                       <a href="{{ asset('/storage/images/portadas/'.$prestamo->libro->image->path) }}" data-lightbox="image-1" data-title="Portada del libro">
                                         <img src="{{ asset('/storage/images/portadas/'.$prestamo->libro->image->path) }}" alt="Portada del libro" class="img-thumbnail" width="50" height="75">
                                       </a>
                                     </td>
-                                    <td>{{ $prestamo->libro->titulo }}</td>
+                                    <td>
+                                      <a style="color:black;" href="{{ route('stock.show',['stock' => $prestamo->libro->stock]) }}">{{ $prestamo->libro->titulo }}</a>
+                                    </td>
                                     <td>{{ $prestamo->estudiante->matricula }} - {{ $prestamo->estudiante->nombre }} {{ $prestamo->estudiante->a_paterno }} {{ $prestamo->estudiante->a_materno }}</td>
                                     <td>{{ $prestamo->encargado->nombre }}</td>
-                                    <td>{{ $prestamo->created_at->format('d/m/y') }}</td>
+                                    <td>{{ $prestamo->created_at->format('d/m/y H:i') }}</td>
                                     <td>
                                       @if ($prestamo->estado == 0)
                                           <span class="badge badge-success">Entregado</span>
@@ -96,10 +98,7 @@
                                       <prestamo-estado :prestamo="{{ $prestamo }}"></prestamo-estado>
                                     </td>
                                     <td>
-                                      <button class="btn btn-primary btn-sm"><i class="fas fa-edit"></i></button>
-                                    </td>
-                                    <td>
-                                      <button class="btn btn-danger btn-sm"><i class="fas fa-trash-alt"></i></button>
+                                      <prestamo-delete :prestamo="{{ $prestamo }}"></prestamo-delete>
                                     </td>
                                   </tr>
                               @endforeach

@@ -13,16 +13,23 @@ export default {
     methods:{
         async estado($event){
             try {
-                const response = await axios.patch(`/biblioteca/prestamos/estado/${this.prestamo.id}`);
+                //se hace una petcion axios para cambiar el estado del libro
+                let response = await axios.patch(`/biblioteca/prestamos/estado/${this.prestamo.id}`);
+                //se verifica la respuesta del servidor, dependiendo de la accion es estado del prestamo cambiara
+                
+                //es para renderizar el dom y cambien los valores en la fila de la tabla seleccionada
+                var padre = $event.target.parentNode.parentNode;
+                var hijoEstado = padre.childNodes[6]
+                var accederHijo = hijoEstado.childNodes[0]
+                
                 if(response.status == 200){
-                    //es para renderizar el dom y cambien los valores en la fila de la tabla seleccionada
-                    var padre = $event.target.parentNode.parentNode;
-                    var hijoEstado = padre.childNodes[5].childNodes[0];
-                    hijoEstado.classList.replace('badge-warning','badge-success')
-                    hijoEstado.textContent = 'Entregado'
-                    //muestra una alerta del estao del
-                    toastr.success('El libro se ha devuelto', 'Biblioteca')
-                    console.log(response.data)
+                    accederHijo.classList.replace('badge-warning','badge-success')
+                    accederHijo.textContent = 'Entregado'
+                    toastr.success('Libro se ha entregado', 'Biblioteca')
+                }else{
+                    accederHijo.classList.replace('badge-success','badge-warning')
+                    accederHijo.textContent = 'Prestado'
+                    toastr.warning('Libro se ha Prestado', 'Biblioteca')
                 }
             } catch (error) {
                 console.log(error)

@@ -3,14 +3,15 @@
 namespace App\Http\Controllers;
 
 use App\Models\Libro;
+use App\Models\Stock;
 use App\Models\Prestamo;
 use App\Models\Estudiante;
 use Illuminate\Http\Request;
+use PhpParser\Node\Expr\New_;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Database\Eloquent\Builder;
 use App\Http\Requests\PrestamoStoreRequest;
-use App\Models\Stock;
-use PhpParser\Node\Expr\New_;
+use App\Http\Requests\PrestamoUpdateRequest;
 
 class PrestamoController extends Controller
 {
@@ -88,15 +89,27 @@ class PrestamoController extends Controller
      */
     public function edit(Prestamo $prestamo)
     {
-        //
+        //se obtienen los estudiantes
+        $estudiantes = Estudiante::orderBy('a_paterno','asc')
+                                    ->get(['id','matricula','nombre','a_paterno','a_materno']);
+
+        //se obtienen los libros del stock
+        $libros = Libro::with('stock')
+                            ->whereHas('stock',function(Builder $query){
+                                $query->where('disponible','!=',0);
+                            })
+                            ->orderby('titulo','asc')
+                            ->get(['id','isbn','titulo']);
+
+        return view('prestamo.edit',compact('estudiantes','libros','prestamo'));
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Prestamo $prestamo)
+    public function update(PrestamoUpdateRequest $request, Prestamo $prestamo)
     {
-        //
+
     }
 
     /**
@@ -104,26 +117,66 @@ class PrestamoController extends Controller
      */
     public function destroy(Prestamo $prestamo)
     {
-        //
+        //se verifica si estado es prestado
+        if ($prestamo->estado == 1){
+            //se buscar el libro en el stock
+            $stock = Stock::stockLibro($prestamo->libro_id);
+
+            //se vuelve al estado anterior del libro en el stock
+            $stock->update([
+                'disponible' => $stock->disponible + 1,
+                'prestado' => $stock->prestado - 1
+            ]);
+        }
+
+        //se elimina el prestamo
+        $prestamo->delete();
+
+        //se envia una respuesta json con estado de codigo 200
+        return response()->json($prestamo,200);
     }
 
     //me permite actulizar el estado del libro
     public function estado(Prestamo $prestamo){
-        //se actualiza el estado del libro
-        $prestamo->update([
-            'estado' => 0
-        ]);
-
-        //se buscar el libro en el stock
+        //se busca el libro en el stock
         $stock = Stock::stockLibro($prestamo->libro_id);
 
-        //se actualiza el estado del libro en el stock
-        $stock->update([
-            'disponible' => $stock->disponible + 1,
-            'prestado' => $stock->prestado - 1
-        ]);
+        if($prestamo->estado == 1){//de estado prestado pasa a devuelto
+            
+            //el libro se devuelve
+            $entregado = $prestamo->update([
+                'estado' => 0
+            ]);
 
-        //se retorna una respuesta json con el codigo de estado 200
-        return response()->json($stock,200);
+            //se actualiza el estado del libro en el stock
+            $stock->update([
+                'disponible' => $stock->disponible + 1,
+                'prestado' => $stock->prestado - 1
+            ]);
+
+            //se retorna una respuesta json con el codigo de estado 200
+            return response()->json($entregado,200);
+        
+        }else{//devuelto pasa a prestado
+            if($stock->disponible-1 >= 0){
+                //el libro se prestado
+                $prestado = $prestamo->update([
+                    'estado' => 1
+                ]);
+
+                //se actualiza el estado del libro en el stock
+                $stock->update([
+                    'disponible' => $stock->disponible - 1,
+                    'prestado' => $stock->prestado + 1
+                ]);
+
+                //se retorna una respuesta json con el codigo de estado 200
+                return response()->json($prestado,201);
+
+            }else{
+                //no es posible prestar mas libros, el stock esta agotado
+                return response()->json($prestamo,500);
+            }
+        }    
     }
 }

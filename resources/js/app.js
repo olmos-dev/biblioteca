@@ -10,6 +10,7 @@ import StockDelete from '../js/components/StockDelete.vue'
 import StockIncrease from '../js/components/StockIncrease.vue'
 import StockDecrementar from '../js/components/StockDecrementar.vue'
 import PrestamoEstado from '../js/components/PrestamoEstado.vue'
+import PrestamoDelete from '../js/components/PrestamoDelete.vue'
 
 const app = createApp({});
 
@@ -20,5 +21,6 @@ app.component('HolaMundo',HolaMundo)
     .component('StockIncrease',StockIncrease)
     .component('StockDecrementar',StockDecrementar)
     .component('PrestamoEstado',PrestamoEstado)
-
+    .component('PrestamoDelete',PrestamoDelete)
+    
 app.mount('#app');

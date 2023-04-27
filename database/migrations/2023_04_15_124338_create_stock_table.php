@@ -12,6 +12,11 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('stock', function (Blueprint $table) {
+            /**
+             * cantidad: variable que define la cantidad total de los libros en el stock
+             * disponible: varible que defina la cantidad de libros restantes en el stock
+             * prestado: varible que defina la cantidad de libros que estan prestados
+             */
             $table->id();
             $table->unsignedBigInteger('libro_id');
             $table->foreign('libro_id')->references('id')->on('libro')->onUpdate('cascade')->ondUpdate('cascade');

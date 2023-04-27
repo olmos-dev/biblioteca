@@ -5,6 +5,7 @@ use App\Http\Controllers\LibroController;
 use App\Http\Controllers\StockController;
 use App\Http\Controllers\PrestamoController;
 use App\Http\Controllers\EstudianteController;
+use App\Models\Stock;
 
 /*
 |--------------------------------------------------------------------------
@@ -33,6 +34,7 @@ Route::delete('/biblioteca/libros/{libro}',[LibroController::class,'destroy'])->
 //Stock
 Route::get('/biblioteca/stock',[StockController::class,'index'])->name('stock.index')->middleware('auth');
 Route::get('/biblioteca/stock/asignar',[StockController::class,'create'])->name('stock.create')->middleware('auth');
+Route::get('/biblioteca/stock/{stock}',[StockController::class,'show'])->name('stock.show')->middleware('auth');
 Route::post('/biblioteca/stock',[StockController::class,'store'])->name('stock.store')->middleware('auth');
 Route::delete('/biblioteca/stock/{stock}',[StockController::class,'destroy'])->name('stock.destroy')->middleware('auth');
 Route::get('/biblioteca/stock/incrementar/{stock}',[StockController::class,'increase'])->name('stock.increase')->middleware('auth');
@@ -46,7 +48,10 @@ Route::get('/biblioteca/estudiante/crear',[EstudianteController::class,'create']
 Route::get('/biblioteca/prestamos',[PrestamoController::class,'index'])->name('prestamo.index')->middleware('auth');
 Route::get('/biblioteca/prestamos/crear',[PrestamoController::class,'create'])->name('prestamo.create')->middleware('auth');
 Route::post('/biblioteca/prestamos',[PrestamoController::class,'store'])->name('prestamo.store')->middleware('auth');
+Route::get('/biblioteca/prestamos/editar/{prestamo}',[PrestamoController::class,'edit'])->name('prestamo.edit')->middleware('auth');
+Route::put('/biblioteca/prestamos/{prestamo}',[PrestamoController::class,'update'])->name('prestamo.update')->middleware('auth');
 Route::patch('/biblioteca/prestamos/estado/{prestamo}',[PrestamoController::class,'estado'])->name('prestamo.estado')->middleware('auth');
+Route::delete('/biblioteca/prestamos/{prestamo}',[PrestamoController::class,'destroy'])->name('prestamo.destroy')->middleware('auth');
 
 
 

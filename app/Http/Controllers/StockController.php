@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Http\Requests\StockRequest;
 use App\Models\Stock;
 use Illuminate\Database\Eloquent\Builder;
+use NunoMaduro\Collision\Adapters\Phpunit\State;
 
 use function PHPUnit\Framework\isEmpty;
 
@@ -69,9 +70,11 @@ class StockController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(string $id)
+    public function show(Stock $stock)
     {
-        //
+        //$stock = Stock::with('libro')->where('stock_id',$stock->id)->first();
+        $stock = Stock::with('libro')->where('id',$stock->id)->first();
+        return view('stock.show',compact('stock'));
     }
 
     /**
