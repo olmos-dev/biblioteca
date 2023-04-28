@@ -138,40 +138,41 @@ class PrestamoController extends Controller
 
     //me permite actulizar el estado del libro
     public function estado(Prestamo $prestamo){
+        
         //se busca el libro en el stock
         $stock = Stock::stockLibro($prestamo->libro_id);
 
         if($prestamo->estado == 1){//de estado prestado pasa a devuelto
             
             //el libro se devuelve
-            $entregado = $prestamo->update([
+            $prestamo->update([
                 'estado' => 0
             ]);
 
             //se actualiza el estado del libro en el stock
-            $stock->update([
-                'disponible' => $stock->disponible + 1,
-                'prestado' => $stock->prestado - 1
-            ]);
+            Stock::estadoDevolver($stock);
 
             //se retorna una respuesta json con el codigo de estado 200
-            return response()->json($entregado,200);
-        
+            return response()->json([
+                'value' => true
+            ],200);
+
         }else{//devuelto pasa a prestado
-            if($stock->disponible-1 >= 0){
+            
+            if($stock->disponible-1 >= 0){//no se puede prestar mas libros; si el libro esta agotado del stock
+                
                 //el libro se prestado
-                $prestado = $prestamo->update([
+                $prestamo->update([
                     'estado' => 1
                 ]);
 
                 //se actualiza el estado del libro en el stock
-                $stock->update([
-                    'disponible' => $stock->disponible - 1,
-                    'prestado' => $stock->prestado + 1
-                ]);
+                Stock::estadoPrestado($stock);
 
                 //se retorna una respuesta json con el codigo de estado 200
-                return response()->json($prestado,201);
+                return response()->json([
+                    'value' => false
+                ],200);
 
             }else{
                 //no es posible prestar mas libros, el stock esta agotado

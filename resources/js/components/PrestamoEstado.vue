@@ -21,19 +21,21 @@ export default {
                 var padre = $event.target.parentNode.parentNode;
                 var hijoEstado = padre.childNodes[6]
                 var accederHijo = hijoEstado.childNodes[0]
-                
-                if(response.status == 200){
+
+
+                if(response.data.value === true){//cuando el libro se ha devuelto
                     accederHijo.classList.replace('badge-warning','badge-success')
                     accederHijo.textContent = 'Entregado'
                     toastr.success('Libro se ha entregado', 'Biblioteca')
-                }else{
+                }else{//cuendo el libro se ha prestado
                     accederHijo.classList.replace('badge-success','badge-warning')
                     accederHijo.textContent = 'Prestado'
                     toastr.warning('Libro se ha Prestado', 'Biblioteca')
                 }
+
             } catch (error) {
-                console.log(error)
-                toastr.error('No se pudo procesar la solicitud', 'Error del servidor')
+                //error 500 cuando el libro esta agotado, cuando existe algún otro tipo de error no se pude proceder
+                error.response.status == 500 ? toastr.warning('El libro esta agotado', 'Biblioteca') : toastr.error('No se pudo procesar la solicitud', 'Error del servidor')
             }
         } 
     }

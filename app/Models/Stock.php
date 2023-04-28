@@ -34,4 +34,20 @@ class Stock extends Model
                         ->where('libro_id',$libro)->first();
     }
 
+    //actualiza el stock cuando el libro se ha devuelto
+    public static function estadoDevolver($stock){
+        $stock->update([
+            'disponible' => $stock->disponible + 1,
+            'prestado' => $stock->prestado - 1
+        ]);
+    }
+
+    //actualiza el stock cuando el libro se ha prestado
+    public static function estadoPrestado($stock){
+        $stock->update([
+            'disponible' => $stock->disponible - 1,
+            'prestado' => $stock->prestado + 1
+        ]);
+    }
+
 }
