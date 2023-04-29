@@ -44,13 +44,26 @@
                   <div class="card-body table-responsive">
                     <div class="row">
                       <div class="col-12 mb-2">
-                        <form action="#" method="get" class="form-inline d-flex justify-content-start justify-content-md-end">
+                        <form action="{{ route('prestamo.index') }}" method="get" class="form-inline d-flex justify-content-start justify-content-md-end">
                           <div class="input-group mb-3">
-                            <input type="search" name="buscar" id="buscar" class="form-control @error('buscar') is-invalid @enderror" placeholder="buscar">
+                            <select name="estado" id="estado" class="form-control">
+                              <option value="" selected>Todo</option>
+                              @foreach ($estados as $estado)
+                                <option value="{{ $estado->valor }}">{{ $estado->valor == 0 ? 'Entregado' : 'Prestado'}}</option>
+                              @endforeach
+                            </select>
+                            <input type="search" name="libro" id="libro" class="mx-1 form-control @error('libro') is-invalid @enderror" placeholder="ISBN o libro">
+                            <input type="search" name="estudiante" id="estudiante" class="mx-1 form-control @error('estudiante') is-invalid @enderror" placeholder="Matricula o nombre">
+                            <input type="date" name="fecha" id="fecha" class="mx-1 form-control @error('fecha') is-invalid @enderror">
                             <div class="input-group-append">
                               <button type="submit" class="btn btn-outline-primary" type="button"><i class="fas fa-search"></i></button>
                             </div>
-                            @error('buscar')
+                            @error('libro')
+                            <div class="invalid-feedback">
+                              {{ $message }}
+                            </div>
+                            @enderror
+                            @error('esduiante')
                             <div class="invalid-feedback">
                               {{ $message }}
                             </div>
@@ -108,7 +121,7 @@
                   <div class="card-foter">
                     <div class="row table-responsive">
                       <div class="col-12 d-flex ml-3 ml-md-0 justify-content-start justify-content-md-center ">
-                       
+                        {{ $prestamos->withQueryString()->links() }}
                       </div>
                     </div>
                   </div>

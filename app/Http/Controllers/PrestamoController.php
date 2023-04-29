@@ -2,12 +2,14 @@
 
 namespace App\Http\Controllers;
 
+use Carbon\Carbon;
 use App\Models\Libro;
 use App\Models\Stock;
 use App\Models\Prestamo;
 use App\Models\Estudiante;
 use Illuminate\Http\Request;
 use PhpParser\Node\Expr\New_;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Database\Eloquent\Builder;
 use App\Http\Requests\PrestamoStoreRequest;
@@ -18,14 +20,24 @@ class PrestamoController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(Request $request)
     {
+        //se cargan los estados para el prestamo
+        $estados = DB::table('estado')->get(['id','valor','nombre']);
+        
+        //los parametros de busqueda
+        $estado = $request->estado ?? null;
+        $libro = $request->libro ?? null;
+        $estudiante = $request->estudiante ?? null;
+        $fecha = $request->fecha ?? null;
+
         //se obtiene los detalles del prestamo
         $prestamos = Prestamo::with('libro:id,isbn,titulo','estudiante:id,matricula,nombre,a_paterno,a_materno','encargado:id,nombre')
+                                ->filtro($estado,$libro,$estudiante,$fecha)
                                 ->orderBy('created_at','desc')
-                                ->get(['id','libro_id','estudiante_id','encargado_id','estado','created_at']);
+                                ->paginate(2,['id','libro_id','estudiante_id','encargado_id','estado','created_at']);
 
-        return view('prestamo.index',compact('prestamos'));
+        return view('prestamo.index',compact('prestamos','estados'));
     }
 
     /**
