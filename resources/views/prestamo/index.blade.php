@@ -81,6 +81,7 @@
                                 <th>Estudiante</th>
                                 <th>Encargado</th>
                                 <th>Fecha</th>
+                                <th>Devuelto</th>
                                 <th>Estado</th>
                                 <th colspan="2" style="width:10%;"></th>
                             </tr>
@@ -100,6 +101,10 @@
                                     <td>{{ $prestamo->estudiante->matricula }} - {{ $prestamo->estudiante->nombre }} {{ $prestamo->estudiante->a_paterno }} {{ $prestamo->estudiante->a_materno }}</td>
                                     <td>{{ $prestamo->encargado->nombre }}</td>
                                     <td>{{ $prestamo->created_at->format('d/m/y H:i') }}</td>
+                                    <td>
+                                      @if ($prestamo->estado == 0)
+                                      {{ $prestamo->updated_at->format('d/m/y H:i') }}</td>
+                                      @endif
                                     <td>
                                       @if ($prestamo->estado == 0)
                                           <span class="badge badge-success">Entregado</span>
