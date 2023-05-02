@@ -18,11 +18,10 @@
           
         </a>
         <div class="dropdown-menu dropdown-menu-lg dropdown-menu-right">
-          <span class="dropdown-item dropdown-header"></span>
           <div class="dropdown-divider"></div>
-          <a href="#" class="dropdown-item">
-           
-          </a>
+          <span class="dropdown-item  font-weight-bold text-capitalize text-center">
+            {{ auth()->user()->roles[0]->tipo }}
+          </span>
           <div class="dropdown-divider"></div>
           <a href="#" class="dropdown-item">
             

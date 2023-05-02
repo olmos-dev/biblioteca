@@ -2,11 +2,12 @@
 
 namespace App\Actions\Fortify;
 
-use App\Models\Encargado;
 use App\Models\User;
+use App\Models\Encargado;
+use Illuminate\Validation\Rule;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
-use Illuminate\Validation\Rule;
 use Laravel\Fortify\Contracts\CreatesNewUsers;
 
 class CreateNewUser implements CreatesNewUsers
@@ -50,6 +51,9 @@ class CreateNewUser implements CreatesNewUsers
             'apellido_paterno' => $input['paterno'],
         ]);
 
+        //asignar el rol - por defecto el rol es de tipo encargado
+        DB::insert('insert into rol_user (user_id, rol_id) values (?, ?)', [$usuario->id,2]);
+        
         return $usuario;
     }
 }
