@@ -47,4 +47,10 @@ class User extends Authenticatable
     {
         return $this->hasOne(Encargado::class,'user_id');
     }
+
+    //relacion muchos a muchos - un usuario tiene muchos roles
+    public function roles()
+    {
+        return $this->belongsToMany(Role::class, 'rol_user', 'user_id', 'role_id');
+    }
 }
