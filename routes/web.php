@@ -5,6 +5,7 @@ use App\Http\Controllers\LibroController;
 use App\Http\Controllers\StockController;
 use App\Http\Controllers\PrestamoController;
 use App\Http\Controllers\EstudianteController;
+use App\Http\Controllers\RolController;
 use App\Models\Stock;
 
 /*
@@ -53,5 +54,7 @@ Route::put('/biblioteca/prestamos/{prestamo}',[PrestamoController::class,'update
 Route::patch('/biblioteca/prestamos/estado/{prestamo}',[PrestamoController::class,'estado'])->name('prestamo.estado')->middleware('auth');
 Route::delete('/biblioteca/prestamos/{prestamo}',[PrestamoController::class,'destroy'])->name('prestamo.destroy')->middleware('auth');
 
+//Roles
+Route::get('/biblioteca/roles',[RolController::class,'index'])->name('rol.index')->middleware(['auth','admin']);
 
 

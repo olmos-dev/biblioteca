@@ -36,7 +36,7 @@ class Prestamo extends Model
             $query->where('estado','like',"%$estado%")
             ->whereDate('created_at',$fecha)
             ->whereHas('libro',function($query) use($libro){
-                $query->where('isbn','like',"%$libro%")->orWhere('titulo','like',"%$libro");
+                $query->where('isbn','like',"%$libro%")->orWhere('titulo','like',"%$libro%");
             })
             ->whereHas('estudiante',function($query) use($estudiante){
                 $query->where('matricula','like',"%$estudiante%")->orWhere('a_paterno','like',"%$estudiante%");
@@ -44,7 +44,7 @@ class Prestamo extends Model
         }else{
             $query->where('estado','like',"%$estado%")
             ->whereHas('libro',function($query) use($libro){
-                $query->where('isbn','like',"%$libro%")->orWhere('titulo','like',"%$libro");
+                $query->where('isbn','like',"%$libro%")->orWhere('titulo','like',"%$libro%");
             })
             ->whereHas('estudiante',function($query) use($estudiante){
                 $query->where('matricula','like',"%$estudiante%")->orWhere('a_paterno','like',"%$estudiante%");

@@ -3,16 +3,22 @@
 namespace App\Http\Controllers;
 
 use App\Models\Libro;
+use App\Models\Stock;
 use Illuminate\Http\Request;
 use App\Http\Requests\StockRequest;
-use App\Models\Stock;
+use Illuminate\Support\Facades\Gate;
+use function PHPUnit\Framework\isEmpty;
+
 use Illuminate\Database\Eloquent\Builder;
 use NunoMaduro\Collision\Adapters\Phpunit\State;
 
-use function PHPUnit\Framework\isEmpty;
-
 class StockController extends Controller
 {
+    //se define el constructor para el middleare admin
+    public function __construct(){
+        $this->middleware('admin', ['except' => ['index', 'show']]);
+    }
+    
     /**
      * Display a listing of the resource.
      */
@@ -105,23 +111,35 @@ class StockController extends Controller
     }
 
     //permite incrementar la cantidad de los libros en el stock
-    public function increase(Stock $stock){
-        $stock->update([
-            'cantidad' => $stock->cantidad + 1,
-            'disponible' => $stock->disponible + 1
-        ]);
+    public function increase(Request $request,Stock $stock){        
+        if($request->ajax()){
+            //se incrementa el stock
+            $stock->update([
+                'cantidad' => $stock->cantidad + 1,
+                'disponible' => $stock->disponible + 1
+            ]);
+            return response()->json($stock,200);
+        }
 
-        return response()->json($stock,200);
+        //no se puede procesar la solicitud
+        return abort(500);
+       
     }
 
     //permite decrementar la cantidad de los libros en el stock
-    public function decrementar(Stock $stock){
-        if ($stock->cantidad != 1)
-            $stock->update([
-                'cantidad' => $stock->cantidad - 1,
-                'disponible' => $stock->disponible - 1
-            ]);
+    public function decrementar(Request $request,Stock $stock){        
+        if($request->ajax()){
+            if ($stock->cantidad != 1)
+                $stock->update([
+                    'cantidad' => $stock->cantidad - 1,
+                    'disponible' => $stock->disponible - 1
+                ]);
 
-        return response()->json($stock,200);
+            return response()->json($stock,200);
+        }
+
+        //no se puede procesar la solicitud
+        return abort(500);
     }
+
 }

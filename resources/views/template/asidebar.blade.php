@@ -18,7 +18,6 @@
               <i class="nav-icon far fa-list-alt"></i>
               <p>
                 Prestamos
-                <i class="right fas fa-angle-left"></i>
               </p>
             </a>
           </li>
@@ -53,13 +52,13 @@
               <i class="nav-icon fas fa-archive"></i>
               <p>
                 Stock
-                <i class="right fas fa-angle-left"></i>
+
               </p>
             </a>
           </li>
           <li class="nav-item has-treeview">
             <a href="#" class="nav-link">
-              <i class="nav-icon fas fa-users"></i>
+              <i class="nav-icon fas fa-graduation-cap"></i>
               <p>
                 Estudiantes
                 <i class="right fas fa-angle-left"></i>
@@ -70,7 +69,7 @@
               <li class="nav-item">
                 <a href="{{ route('estudiante.index') }}" class="nav-link">
                   <i class="fas fa-list-ul nav-icon"></i>
-                  <p>ver todos los estudiantes</p>
+                  <p>todos los estudiantes</p>
                 </a>
               </li>
               <li class="nav-item">
@@ -81,10 +80,18 @@
               </li>
             </ul>
           </li>
-          {{-- stock --}}
-          
-
-          
+          {{-- roles --}}
+          @if (auth()->user()->roles[0]->tipo === 'administrador')
+          <li class="nav-item has-treeview">
+            <a href="{{ route('rol.index') }}" class="nav-link">
+              <i class="nav-icon fas fa-users"></i>
+              <p>
+                Roles
+               
+              </p>
+            </a>
+          </li>
+          @endif
         </ul>
       </nav>
       <!-- /.sidebar-menu -->

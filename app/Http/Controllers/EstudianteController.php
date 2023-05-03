@@ -7,6 +7,11 @@ use Illuminate\Http\Request;
 
 class EstudianteController extends Controller
 {
+    //se define el constructor para el middleare admin
+    public function __construct(){
+        $this->middleware('admin', ['except' => ['index', 'show']]);
+    }
+
     /**
      * Display a listing of the resource.
      */
