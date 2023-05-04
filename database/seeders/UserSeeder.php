@@ -48,6 +48,7 @@ class UserSeeder extends Seeder
             'apellido_paterno' => 'Baez'
         ]);
 
+        //User::factory()->times(10)->create();
        
         
     }

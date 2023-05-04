@@ -35,7 +35,7 @@ class PrestamoController extends Controller
         $prestamos = Prestamo::with('libro:id,isbn,titulo','estudiante:id,matricula,nombre,a_paterno,a_materno','encargado:id,nombre')
                                 ->filtro($estado,$libro,$estudiante,$fecha)
                                 ->orderBy('created_at','desc')
-                                ->paginate(2,['id','libro_id','estudiante_id','encargado_id','estado','created_at','updated_at']);
+                                ->paginate(10,['id','libro_id','estudiante_id','encargado_id','estado','created_at','updated_at']);
 
         return view('prestamo.index',compact('prestamos','estados'));
     }
