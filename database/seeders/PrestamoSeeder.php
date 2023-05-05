@@ -14,6 +14,6 @@ class PrestamoSeeder extends Seeder
     public function run(): void
     {
         //query took 65s for 10000 records
-        Prestamo::factory()->times(100)->create();
+        Prestamo::factory()->times(1000)->create();
     }
 }

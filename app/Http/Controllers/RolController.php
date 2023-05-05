@@ -12,7 +12,10 @@ class RolController extends Controller
      */
     public function index()
     {
-        $roles = User::with('encargado','roles')->get();
+        $roles = User::with('encargado','roles')
+                        ->whereNot('id',auth()->user()->id)
+                        ->orderBy('created_at','desc')                
+                        ->get();
         //return $roles;
         return view('rol.index',compact('roles'));
     }
@@ -64,4 +67,27 @@ class RolController extends Controller
     {
         //
     }
+
+    //se asigna un rol
+    public function asignarRol(Request $request, User $usuario){
+        //seguridad si es una solicitud ajax
+        if($request->ajax())
+            //se obtiene el rol actual
+            $rol = $usuario->roles[0]->tipo;
+
+            if($rol === 'administrador'){
+                //se asigna el rol encargado
+                $usuario->roles()->sync([2]);
+                //se prepara la respuesta
+                return response()->json(['respuesta' =>'encargado'],200);
+            }else{
+                //se asigna el rol administrador
+                $usuario->roles()->sync([1]);
+                 //se prepara la respuesta
+                return response()->json(['respuesta' =>'administrador'],200);
+            }
+            
+        return abort(404);
+    }
+
 }

@@ -56,5 +56,6 @@ Route::delete('/biblioteca/prestamos/{prestamo}',[PrestamoController::class,'des
 
 //Roles
 Route::get('/biblioteca/roles',[RolController::class,'index'])->name('rol.index')->middleware(['auth','admin']);
+Route::put('/biblioteca/roles/{usuario}',[RolController::class,'asignarRol'])->middleware('auth','admin');
 
 

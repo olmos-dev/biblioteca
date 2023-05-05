@@ -65,7 +65,7 @@
                                         <td>{{ $rol->roles[0]->tipo }}</td>
                                         <td>{{ $rol->created_at->diffForHumans()}}</td>
                                         <td>
-                                            <button class="btn btn-primary btn-sm"><i class="fas fa-sync-alt"></i></button>
+                                          <asignar-rol :usuario="{{ $rol }}"></asignar-rol>
                                         </td>
                                     </tr>
                                 @endforeach
