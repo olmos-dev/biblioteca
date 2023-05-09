@@ -23,9 +23,7 @@
             {{ auth()->user()->roles[0]->tipo }}
           </span>
           <div class="dropdown-divider"></div>
-          <a href="#" class="dropdown-item">
-            
-          </a>
+          
           <div class="dropdown-divider"></div>
           <a href="#" class="dropdown-item">
            

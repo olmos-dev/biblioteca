@@ -13,6 +13,12 @@
                     <div class="card">
                     <div class="card-body login-card-body">
                         <p class="login-box-msg">Accede para comenzar</p>
+                        {{-- mensaje de restablecimiento de contraseña --}}
+                        @if (session('status'))
+                            <div class="mb-4 font-medium text-sm text-green-600">
+                                {{ session('status') }}
+                            </div>
+                        @endif
                         {{-- Validación --}}
                         @if ($errors->all())
                             <div class="alert alert-danger alert-dismissible fade show" role="alert">
@@ -65,6 +71,9 @@
                     <p class="mb-1">
                       <a href="{{ url('/forgot-password') }}">Olvide mi contraseña</a>
                     </p>
+                    <p class="mb-1">
+                        <a href="{{route('password.reset',['token'=>csrf_token()])}}">Restablecer contraseña</a>
+                      </p>
                     <p class="mb-0">
                       <a href="{{ url('/register') }}" class="text-center">Registrar un nuevo usuario</a>
                     </p>

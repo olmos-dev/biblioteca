@@ -36,9 +36,7 @@
                       <div class="col-12 col-md-6 d-flex justify-content-center justify-content-md-start">
                         <h5><i class="fas fa-users"></i> Roles</h5>
                       </div>
-                      <div class="col-12 col-md-6 d-flex justify-content-center justify-content-md-end">
-                            <a class="btn btn-outline-light" style="border:none" href="#"><i class="fas fa-plus"></i> asignar un rol</a>
-                      </div>
+                      
                     </div>
                   </div>
                   <div class="card-body table-responsive">

@@ -21,7 +21,7 @@ use App\Models\Stock;
 
 Route::get('/biblioteca', function () {
     return view('index');
-})->middleware('auth');
+})->middleware('auth','verified');
 
 //Libros
 Route::get('/biblioteca/libros',[LibroController::class,'index'])->name('libro.index')->middleware('auth');
@@ -57,5 +57,3 @@ Route::delete('/biblioteca/prestamos/{prestamo}',[PrestamoController::class,'des
 //Roles
 Route::get('/biblioteca/roles',[RolController::class,'index'])->name('rol.index')->middleware(['auth','admin']);
 Route::put('/biblioteca/roles/{usuario}',[RolController::class,'asignarRol'])->middleware('auth','admin');
-
-
