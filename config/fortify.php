@@ -144,8 +144,6 @@ return [
         ]),
     ],
 
-    'redirects' => [
-        'logout' => '/biblioteca',
-    ],
+   
 
 ];
