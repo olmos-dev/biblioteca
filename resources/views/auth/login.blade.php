@@ -4,20 +4,24 @@
 <div class="container">
     <div class="row justify-content-center">
         <div class="col-12 col-md-4 mt-5">
-                @csrf
+                @csrf 
                 <div class="login-box shadow">
-                    <div class="login-logo mt-5">
+                    <div class="login-logo">
                     <a href="{{ url('/biblioteca')}}"><b>Biblioteca</b></a>
                     </div>
                     <!-- /.login-logo -->
                     <div class="card">
                     <div class="card-body login-card-body">
                         <p class="login-box-msg">Accede para comenzar</p>
-                        {{-- mensaje de restablecimiento de contraseña --}}
+                        {{-- comment --}}
                         @if (session('status'))
-                            <div class="mb-4 font-medium text-sm text-green-600">
-                                {{ session('status') }}
-                            </div>
+                        <div class="alert alert-info alert-dismissible fade show" role="alert">
+                            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                                <span class="sr-only">Close</span>
+                            </button>
+                            {{ session('status') }}
+                        </div>
                         @endif
                         {{-- Validación --}}
                         @if ($errors->all())
@@ -56,9 +60,7 @@
                                 <div class="col-8">
                                 <div class="icheck-primary">
                                     <input type="checkbox" id="remember">
-                                    <label for="remember">
-                                    Recordarme
-                                    </label>
+                                    <label for="remember"> Recordarme</label>
                                 </div>
                                 </div>
                                 <!-- /.col -->
@@ -71,9 +73,6 @@
                     <p class="mb-1">
                       <a href="{{ url('/forgot-password') }}">Olvide mi contraseña</a>
                     </p>
-                    <p class="mb-1">
-                        <a href="{{route('password.reset',['token'=>csrf_token()])}}">Restablecer contraseña</a>
-                      </p>
                     <p class="mb-0">
                       <a href="{{ url('/register') }}" class="text-center">Registrar un nuevo usuario</a>
                     </p>
