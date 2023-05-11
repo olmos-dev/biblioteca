@@ -45,17 +45,34 @@ class PerfilController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(Encargado $encargado)
+    public function edit()
     {
-        //
+        $encargado = auth()->user()->encargado;
+        return view('perfil.edit',compact('encargado'));
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Encargado $encargado)
+    public function update(Request $request)
     {
-        //
+        //se realiza la validacion de los campos
+        $validated = $request->validate([
+            'nombre' => ['required', 'string', 'max:30'],
+            'apaterno' => ['required', 'string', 'max:30'],
+            'amaterno' => ['required', 'string', 'max:30'],
+        ]);
+
+        //se autaliza el perfil del encargado logueado
+        auth()->user()->encargado->update([
+            'nombre' => $validated['nombre'],
+            'apellido_paterno' => $validated['apaterno'],
+            'apellido_materno' => $validated['amaterno']
+        ]);
+
+        //una redirecion con una alerta
+        return redirect()->route('perfil.show')->with('biblioteca','Nombre actualizado correctamente');
+
     }
 
     /**

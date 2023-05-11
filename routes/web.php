@@ -63,6 +63,8 @@ Route::put('/biblioteca/roles/{usuario}',[RolController::class,'asignarRol'])->m
 
 //Perfil
 Route::get('/biblioteca/perfil',[PerfilController::class,'show'])->name('perfil.show')->middleware('auth');
+Route::get('/biblioteca/perfil/editar',[PerfilController::class,'edit'])->name('perfil.edit')->middleware('auth');
+Route::patch('/biblioteca/perfil',[PerfilController::class,'update'])->name('perfil.update')->middleware('auth');
 
 //foto de perfil
 Route::get('/biblioteca/foto-perfil',[FotoPerfilController::class,'create'])->name('foto.create')->middleware('auth');

@@ -38,7 +38,7 @@
                         <div class="row">
                             <div class="col-12 mb-4">
                                 <div class="btn-group" role="group" aria-label="Button group with nested dropdown">
-                                    <button type="button" class="btn btn-secondary"><i class="fas fa-user"></i> Editar nombre</button>
+                                    <a href="{{ route('perfil.edit') }}" class="btn btn-secondary"><i class="fas fa-user"></i> Editar nombre</a>
                                   
                                     <div class="btn-group" role="group">
                                       <button type="button" class="btn btn-secondary dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
