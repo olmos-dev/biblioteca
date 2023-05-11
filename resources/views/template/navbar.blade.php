@@ -23,7 +23,11 @@
             {{ auth()->user()->roles[0]->tipo }}
           </span>
           <div class="dropdown-divider"></div>
-          
+          <a href="#" class="dropdown-item dropdown-footer">
+            <form action="{{ route('perfil.show') }}" method="get">
+                <button style="border: none; background:none;"><i class="fas fa-user"></i> Perfil</button>
+            </form>
+          </a>
           <div class="dropdown-divider"></div>
           <a href="#" class="dropdown-item">
            

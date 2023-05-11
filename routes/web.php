@@ -5,7 +5,10 @@ use App\Http\Controllers\LibroController;
 use App\Http\Controllers\StockController;
 use App\Http\Controllers\PrestamoController;
 use App\Http\Controllers\EstudianteController;
+use App\Http\Controllers\FotoPerfilController;
+use App\Http\Controllers\PerfilController;
 use App\Http\Controllers\RolController;
+use App\Http\Requests\FotoPerfilRequest;
 use App\Models\Stock;
 
 /*
@@ -57,3 +60,12 @@ Route::delete('/biblioteca/prestamos/{prestamo}',[PrestamoController::class,'des
 //Roles
 Route::get('/biblioteca/roles',[RolController::class,'index'])->name('rol.index')->middleware(['auth','admin']);
 Route::put('/biblioteca/roles/{usuario}',[RolController::class,'asignarRol'])->middleware('auth','admin');
+
+//Perfil
+Route::get('/biblioteca/perfil',[PerfilController::class,'show'])->name('perfil.show')->middleware('auth');
+
+//foto de perfil
+Route::get('/biblioteca/foto-perfil',[FotoPerfilController::class,'create'])->name('foto.create')->middleware('auth');
+Route::post('/biblioteca/foto-perfil',[FotoPerfilController::class,'store'])->name('foto.store')->middleware('auth');
+Route::delete('/biblioteca/foto-perfil',[FotoPerfilController::class,'destroy'])->name('foto.destroy')->middleware('auth');
+
