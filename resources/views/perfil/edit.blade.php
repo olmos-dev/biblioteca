@@ -1,8 +1,7 @@
 @extends('layouts.app')
 
 @section('estilos')
-    <link rel="stylesheet" href="{{ asset('css/lightbox.min.css') }}">
-    <link rel="stylesheet" href="{{ asset('css/toastr.min.css') }}">
+
 @endsection
 
 @section('content')
@@ -75,8 +74,5 @@
 @endsection
 
 @section('scripts')
-    <script src="{{ asset('js/lightbox.min.js') }}"></script>
-    <script src="{{ asset('js/toastr.min.js') }}"></script>
-    {{-- alerta al subit una imagen --}}
-    <script src="{{ asset('js/main/alertupload.js') }}"></script>
+
 @endsection

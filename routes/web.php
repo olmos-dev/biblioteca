@@ -47,6 +47,10 @@ Route::get('/biblioteca/stock/decrementar/{stock}',[StockController::class,'decr
 //estudiante
 Route::get('/biblioteca/estudiante',[EstudianteController::class,'index'])->name('estudiante.index')->middleware('auth');
 Route::get('/biblioteca/estudiante/crear',[EstudianteController::class,'create'])->name('estudiante.create')->middleware('auth');
+Route::post('/biblioteca/estudiante',[EstudianteController::class,'store'])->name('estudiante.store')->middleware('auth');
+Route::get('/biblioteca/estudiante/{estudiante}',[EstudianteController::class,'edit'])->name('estudiante.edit')->middleware('auth');
+Route::put('/biblioteca/estudiante/{estudiante}',[EstudianteController::class,'update'])->name('estudiante.update')->middleware('auth');
+Route::delete('/biblioteca/estudiante/{estudiante}',[EstudianteController::class,'destroy'])->name('estudiante.destroy')->middleware('auth');
 
 //prestamos
 Route::get('/biblioteca/prestamos',[PrestamoController::class,'index'])->name('prestamo.index')->middleware('auth');

@@ -74,10 +74,14 @@
                                     <td>{{ $estudiante->a_paterno }}</td>
                                     <td>{{ $estudiante->a_materno }}</td>
                                     <td>
-                                        <button class="btn btn-primary btn-sm"><i class="fas fa-edit"></i></button>
+                                        <a href="{{ route('estudiante.edit',['estudiante' => $estudiante]) }}" class="btn btn-primary btn-sm"><i class="fas fa-edit"></i></a>
                                     </td>
                                     <td>
-                                        <button class="btn btn-danger btn-sm"><i class="fas fa-trash-alt"></i></button>
+                                      <form action="{{ route('estudiante.destroy',['estudiante' => $estudiante]) }}" method="post">
+                                        @csrf
+                                        @method('delete')
+                                        <button type="submit" class="btn btn-danger btn-sm"><i class="fas fa-trash-alt"></i></button>
+                                      </form>
                                     </td>
                                 </tr>
                                 @endforeach

@@ -22,7 +22,7 @@ class LibroUpdateRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'isbn' => ['required','digits:10'],
+            'isbn' => ['required','digits:10','unique:libro,isbn,'.$this->libro->id,],
             'portada' => ['nullable','image','mimes:png,jpg,jpeg'],
             'titulo' => ['required','string','max:60'],
             'autor' => ['required','string','max:60'],
