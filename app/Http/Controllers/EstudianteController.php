@@ -10,6 +10,7 @@ class EstudianteController extends Controller
     //se define el constructor para el middleare admin
     public function __construct(){
         $this->middleware('admin', ['except' => ['index', 'show']]);
+        $this->middleware('verified');
     }
 
     /**
@@ -22,7 +23,7 @@ class EstudianteController extends Controller
         $estudiantes = Estudiante::select('matricula','nombre','a_paterno','a_materno')
                                     ->filtrar($buscar)
                                     ->orderBy('nombre','asc')
-                                    ->paginate(5);
+                                    ->paginate(10);
 
         return view('estudiante.index',compact('estudiantes'));
     }

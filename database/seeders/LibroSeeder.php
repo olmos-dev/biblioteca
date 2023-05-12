@@ -168,6 +168,58 @@ class LibroSeeder extends Seeder
             'imageable_type' => get_class($libro11)
         ]);
 
+        $libro12 = Libro::create([
+            'isbn' => '1867945931',
+            'titulo' => 'Alicia en el Pais de las maravillas',
+            'autor' => 'Lewis Carggl',
+            'editorial' => 'Alba'
+        ]);
+
+        $libro12->image()->create([
+            'path' => '9.jfif',
+            'imageable_id' => $libro12->id,
+            'imageable_type' => get_class($libro12)
+        ]);
+
+        $libro13 = Libro::create([
+            'isbn' => '8693429571',
+            'titulo' => 'Crea tu libro',
+            'autor' => 'Anthony Mack',
+            'editorial' => 'Estrella'
+        ]);
+
+        $libro13->image()->create([
+            'path' => '13.jfif',
+            'imageable_id' => $libro13->id,
+            'imageable_type' => get_class($libro13)
+        ]);
+
+        $libro14 = Libro::create([
+            'isbn' => '3101299378',
+            'titulo' => 'Un mundo sin libros',
+            'autor' => 'Mariela Cisneros',
+            'editorial' => 'Alba'
+        ]);
+
+        $libro14->image()->create([
+            'path' => '14.jfif',
+            'imageable_id' => $libro14->id,
+            'imageable_type' => get_class($libro14)
+        ]);
+
+        $libro15 = Libro::create([
+            'isbn' => '9057470696',
+            'titulo' => 'El bosque despiesto',
+            'autor' => 'Anomino',
+            'editorial' => 'Austral'
+        ]);
+
+        $libro15->image()->create([
+            'path' => '15.jpeg',
+            'imageable_id' => $libro15->id,
+            'imageable_type' => get_class($libro15)
+        ]);
+
 
        
         

@@ -7,6 +7,11 @@ use Illuminate\Http\Request;
 
 class RolController extends Controller
 {
+    //se define el constructor para el middleare admin
+    public function __construct(){
+        $this->middleware('verified');
+    }
+    
     /**
      * Display a listing of the resource.
      */

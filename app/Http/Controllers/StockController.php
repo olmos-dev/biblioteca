@@ -17,6 +17,7 @@ class StockController extends Controller
     //se define el constructor para el middleare admin
     public function __construct(){
         $this->middleware('admin', ['except' => ['index', 'show']]);
+        $this->middleware('verified');
     }
     
     /**
