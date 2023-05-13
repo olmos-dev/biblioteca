@@ -4,6 +4,7 @@ namespace Database\Seeders;
 
 use App\Models\User;
 use App\Models\Encargado;
+use Carbon\Carbon;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
@@ -21,6 +22,7 @@ class UserSeeder extends Seeder
             'name' => 'alberto94',
             'email' => 'alberto@mail.com',
             'password' => Hash::make('123'),
+            'email_verified_at' => Carbon::now()
         ]);
 
         DB::insert('insert into rol_user (user_id,rol_id) values (?, ?)', [1,1]);
@@ -31,12 +33,19 @@ class UserSeeder extends Seeder
             'apellido_materno' => 'Gomez',
             'apellido_paterno' => 'Perez'
         ]);
+
+        $usuario1->image()->create([
+            'path' => '2.jpg',
+            'imageable_id' => $usuario1->id,
+            'imageable_type' => get_class($usuario1)
+        ]);
         
         //se crea el usuario con rol de encargado
         $usuario2 = User::create([
             'name' => 'ana85',
             'email' => 'ana@mail.com',
             'password' => Hash::make('123'),
+            'email_verified_at' => Carbon::now(),
         ]);
 
         DB::insert('insert into rol_user (user_id,rol_id) values (?, ?)', [2,2]);
@@ -48,11 +57,18 @@ class UserSeeder extends Seeder
             'apellido_paterno' => 'Baez'
         ]);
 
+        $usuario2->image()->create([
+            'path' => '3.jpg',
+            'imageable_id' => $usuario2->id,
+            'imageable_type' => get_class($usuario2)
+        ]);
+
         //se crea el usuario con rol de encargado
         $usuario3 = User::create([
             'name' => 'jose93',
             'email' => 'jose@mail.com',
             'password' => Hash::make('123'),
+            'email_verified_at' => Carbon::now()
         ]);
 
         DB::insert('insert into rol_user (user_id,rol_id) values (?, ?)', [3,rand(1,2)]);
@@ -61,7 +77,13 @@ class UserSeeder extends Seeder
             'user_id' => $usuario3->id,
             'nombre' => 'José',
             'apellido_materno' => 'Hernandez',
-            'apellido_paterno' => 'Gomez'
+            'apellido_paterno' => 'Gomez',
+        ]);
+
+        $usuario3->image()->create([
+            'path' => '1.jpg',
+            'imageable_id' => $usuario3->id,
+            'imageable_type' => get_class($usuario3),
         ]);
 
         //se crea el usuario con rol de encargado
@@ -78,6 +100,12 @@ class UserSeeder extends Seeder
             'nombre' => 'Maria Isabel',
             'apellido_materno' => 'Sanchez',
             'apellido_paterno' => 'Lara'
+        ]);
+        
+        $usuario4->image()->create([
+            'path' => '4.jpg',
+            'imageable_id' => $usuario4->id,
+            'imageable_type' => get_class($usuario4)
         ]);
 
         //se crea el usuario con rol de encargado
