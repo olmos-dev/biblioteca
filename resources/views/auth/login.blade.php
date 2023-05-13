@@ -60,7 +60,7 @@
                                 <div class="col-8">
                                 <div class="icheck-primary">
                                     <input type="checkbox" name="remember" id="remember">
-                                    <label for="remember"> Recordarme</label>
+                                    <label for="remember" class="mx-1"> Recordarme</label>
                                 </div>
                                 </div>
                                 <!-- /.col -->
