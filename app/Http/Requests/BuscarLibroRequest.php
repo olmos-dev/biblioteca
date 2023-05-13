@@ -22,7 +22,7 @@ class BuscarLibroRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'buscar' => ['nullable','max:15','regex:/^[\pL\s\-]+$/u'],
+            'buscar' => ['nullable','max:15','string'],
         ];
     }
 }

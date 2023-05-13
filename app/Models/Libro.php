@@ -37,7 +37,8 @@ class Libro extends Model
     }
 
     public function scopeFiltrarLibro($query,$buscar){
-        return $query->where('titulo','like',"%$buscar%")
+        return $query->where('isbn','like',"%$buscar%")
+                        ->orWhere('titulo','like',"%$buscar%")
                         ->orWhere('autor','like',"%$buscar%")
                         ->orWhere('editorial','like',"%$buscar%");
     }
