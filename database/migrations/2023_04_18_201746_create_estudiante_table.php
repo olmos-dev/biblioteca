@@ -13,8 +13,8 @@ return new class extends Migration
     {
         Schema::create('estudiante', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('matricula');
-            $table->string('nombre',30)->unique();
+            $table->unsignedBigInteger('matricula')->unique();
+            $table->string('nombre',30);
             $table->string('a_paterno',30);
             $table->string('a_materno',30);
             $table->timestamps();
