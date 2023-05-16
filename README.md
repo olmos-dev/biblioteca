@@ -1,66 +1,166 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
+# Descripción General - Biblioteca
+Es un sistema de una biblioteca donde existen dos tipos de roles, el administrador y el encargado. Cada rol tiene ciertos privilegios para realizar acciones. Se registran los estudiantes y los libros, y cada libro tiene un stock de la cantidad y existencia de los mismos. Así como, se pueden subir portadas (imágenes) de los libros. También se pueden registrar nuevos usuarios, editar su perfil y subir una foto de perfil. También lleva el control de los libros que se ha prestado y se han devuelto. Hace uso del paquete de Laravel Fortify para la autenticación y se utiliza Vue 3 para la implementación del sistema 
 
-<p align="center">
-<a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
+# Requerimientos
+* PHP 8.1
+* Laravel 10
+* Microsoft SQL Server 2019 Express
+* Última versión:
+    * Composer
+    * Node.js
+    * npm
 
-## About Laravel
+Notas: 
+* Si usas un SGBD diferente, debes mirar la documentación oficial de Laravel y ajustar los nuevos parámetros de las credenciales en el archivo .env
+[Leer más](https://laravel.com/docs/10.x/database "Ir a  documentación")
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+* Si quieres configurar SQL Server para este proyecto tu debes seguir los pasos en el siguiente enlace. [Leer más](https://learn.microsoft.com/es-es/sql/connect/php/microsoft-php-driver-for-sql-server?view=sql-server-ver16 "Leer más") 
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+* Si quieres configurar la autenticación por inicio de sesión para SQL Server tu debes seguir el siguiente enlace. [Leer más](https://learn.microsoft.com/en-us/sql/relational-databases/security/authentication-access/create-a-login?view=sql-server-ver16 "Leer más")
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+# Primeros pasos
 
-## Learning Laravel
+### **Descarga o clona este repositorio**
+```bash
+git clone https://github.com/olmos-dev/biblioteca.git
+```
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+### **Instalar**
+Instala la carpeta *vendor* para el proyecto
+```bash
+composer update
+```
 
-You may also try the [Laravel Bootcamp](https://bootcamp.laravel.com), where you will be guided through building a modern Laravel application from scratch.
+Instala *node modules*
+```bash
+npm install
+```
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains over 2000 video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+### **Cofigurar la Base de Datos**
 
-## Laravel Sponsors
+1. crea una nueva base de datos llamada biblioteca
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the Laravel [Patreon page](https://patreon.com/taylorotwell).
+2. crea un nuevo archivo .env en la raíz del proyecto
 
-### Premium Partners
+3. Ahora ajusta los parámetros de las base de datos que utilizas en el archivo .env
 
-- **[Vehikl](https://vehikl.com/)**
-- **[Tighten Co.](https://tighten.co)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Cubet Techno Labs](https://cubettech.com)**
-- **[Cyber-Duck](https://cyber-duck.co.uk)**
-- **[Many](https://www.many.co.uk)**
-- **[Webdock, Fast VPS Hosting](https://www.webdock.io/en)**
-- **[DevSquad](https://devsquad.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel/)**
-- **[OP.GG](https://op.gg)**
-- **[WebReinvent](https://webreinvent.com/?utm_source=laravel&utm_medium=github&utm_campaign=patreon-sponsors)**
-- **[Lendio](https://lendio.com)**
+    ```bash
+    DB_CONNECTION=sqlsrv
+    DB_HOST=127.0.0.1
+    DB_PORT=1433
+    DB_DATABASE=laravel
+    DB_USERNAME=developer
+    DB_PASSWORD=12345678
+    ```
+4. También ajusta la configuración y las credenciales de **mailtrap** (debes de crear una cuenta o usar algún otro servicio) en el archivo .env
 
-## Contributing
+    ```bash
+    MAIL_MAILER=smtp
+    MAIL_HOST=sandbox.smtp.mailtrap.io
+    MAIL_PORT=2525
+    MAIL_USERNAME="tu_username"
+    MAIL_PASSWORD="tu_contraseña"
+    MAIL_ENCRYPTION=tls
+    MAIL_FROM_ADDRESS="biblioteca@example.com"
+    MAIL_FROM_NAME="${APP_NAME}"
+    ```
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+5. Debes correr las migraciones para crear la tablas en la base de datos 
+    ```bash
+    php artisan migrate
+    ```
+6. Debes correr los *seeders* para poblar la base de datos 
+    ```bash
+    php artisan db:seed
+    ```
+        
+### **Genera una llave**
 
-## Code of Conduct
+Debes generar una nueva llave para la aplicación
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
+```bash
+php artisan key:generate
+```
 
-## Security Vulnerabilities
+# Correr el proyecto
+Ejecuta el servidor de laravel
+```bash
+php artisan serve
+```
+Ejecuta el servidor de npm 
+```bash
+npm run dev
+```
+Ahora abre el proyecto y disfruta de la aplicación
+```bash
+http://127.0.0.1:8000/biblioteca
+```
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
+Note: hay tres perfiles para iniciar sesión disponibles o también puedes registar un nuevo usuario
 
-## License
+|Nombre de usuari|Correo|Contraseña|
+|:-----|----|-------:|
+|alberto94|alberto@mail.com|123
+|ana85|ana@mail.com|123
+|jose93|jose@mail.com|123
 
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+# Demostración en vivo
+Pulsa aquí [biblioteca](https://agendacontactos2.000webhostapp.com/ "Ir al demo")
+
+# Tecnologías y herramientas usadas
+* Laravel 10
+* Vue 3
+* PHP 8.1
+* Bootstrap 4.6
+* SQL Server Express Edition 
+* Javascript
+* AdminLTE 3
+
+# Documentación
+
+## Diagrama entidad relación
+
+![db](files/diagrama-err.png "Database - Social Network")
+
+## Relaciones
+
+* La tabla **users** tiene una relacion *muchos a muchos* con la tabla **rol**
+
+* La tabla **users** tiene una relacion *uno a uno*
+con la tabla **encargado**
+
+* La tabla **prestamo** tiene una relación *uno a muchos* con la tablas **encargado**, **libro** y **estudiante**
+
+* La tabla **libro** tiene una relación *uno a uno* con la tabla **stock**
+
+* La tabla **images** tiene una relación *polimorfica uno a uno* con las tablas **libro** y **users**; es decir se pueden subir images a cada tabla respectivamente
+
+* La tabla **estado** contiene dos valores boolenos: entregado y prestado. Se refiere al estado del prestamo del libro.
+
+## Fortify
+Se utilizó el paquete de autenticación **Laravel Fortify**
+
+* Se puede inicar sesión con correo electrónico o nombre de usuario
+* Se puede registar un nuevo usuario
+* Envío al correo electrónico el enlace para restablecer las contraseñas
+* Formulario para restablecer contraseñas
+* Verificación de correo electrónico para acceder a la aplicación
+* Cerrar sesión
+
+## Roles
+Se implemento un middleware para la proteción de las rutas de acceso en caso que sea un administrador o no.
+* Existen dos tipos de roles el administrador y el encargado
+* El administrador puede decrementar e incremetar el stock de los libros
+* El administrador solmante puede asignar roles
+* El administrador puede realizar la acción de eliminar
+
+## Screenshots
+
+![imagen](files/2.png "Biblioteca - Iniciar sesión")
+![imagen](files/1.png "Biblioteca - Prestamos")
+![imagen](files/3.png "Biblioteca - Stock")
+![imagen](files/4.png "Biblioteca - Asignación de roles")
+
+
+
+
