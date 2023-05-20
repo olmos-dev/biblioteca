@@ -13,16 +13,18 @@ export default {
     methods:{
         async estado($event){
             try {
+              
                 //se hace una petcion axios para cambiar el estado del libro
                 let response = await axios.patch(`/biblioteca/prestamos/estado/${this.prestamo.id}`);
                 //se verifica la respuesta del servidor, dependiendo de la accion es estado del prestamo cambiara
-                
+                console.log(response);
+                console.log(response.data)
+                console.log(response.status);
                 //es para renderizar el dom y cambien los valores en la fila de la tabla seleccionada
                 var padre = $event.target.parentNode.parentNode;
-                var hijoEstado = padre.childNodes[6]
+                var hijoEstado = padre.childNodes[7]
                 var accederHijo = hijoEstado.childNodes[0]
-
-
+                
                 if(response.data.value === true){//cuando el libro se ha devuelto
                     accederHijo.classList.replace('badge-warning','badge-success')
                     accederHijo.textContent = 'Entregado'
@@ -35,7 +37,8 @@ export default {
 
             } catch (error) {
                 //error 500 cuando el libro esta agotado, cuando existe algún otro tipo de error no se pude proceder
-                error.response.status == 500 ? toastr.warning('El libro esta agotado', 'Biblioteca') : toastr.error('No se pudo procesar la solicitud', 'Error del servidor')
+                //error.response.status == 500 ? toastr.warning('El libro esta agotado', 'Biblioteca') : toastr.error('No se pudo procesar la solicitud', 'Error del servidor')
+                console.log(error)
             }
         } 
     }
